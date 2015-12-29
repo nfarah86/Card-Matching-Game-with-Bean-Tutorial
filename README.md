@@ -7,6 +7,9 @@ To learn how to use the Bean, visit the [Getting started guide](#)
 I used some classes not mentioned in the lectures, which I will go over during the tutorial. 
 
 # Versions
+|  Version | Description |
+|---|---|
+|[v.01](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v0.1)| Code after Lecture 1 and 2  | 
 
 # License
 
