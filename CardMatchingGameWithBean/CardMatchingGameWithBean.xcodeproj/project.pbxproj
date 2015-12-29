@@ -114,8 +114,6 @@
 		DD13272E1C2A5CA0002A799B /* CardMatchingGameWithBean */ = {
 			isa = PBXGroup;
 			children = (
-				DD1327321C2A5CA0002A799B /* AppDelegate.h */,
-				DD1327331C2A5CA0002A799B /* AppDelegate.m */,
 				DD1327351C2A5CA0002A799B /* ViewController.h */,
 				DD1327361C2A5CA0002A799B /* ViewController.m */,
 				DD1327381C2A5CA0002A799B /* Main.storyboard */,
@@ -130,6 +128,8 @@
 		DD13272F1C2A5CA0002A799B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DD1327321C2A5CA0002A799B /* AppDelegate.h */,
+				DD1327331C2A5CA0002A799B /* AppDelegate.m */,
 				DD1327301C2A5CA0002A799B /* main.m */,
 			);
 			name = "Supporting Files";
