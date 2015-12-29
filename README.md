@@ -9,8 +9,8 @@ I used some classes not mentioned in the lectures, which I will go over during t
 # Versions
 |  Version | Description |
 |---|---|
-|[v.01](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v0.1)| Code after Lecture 1 and 2  | 
-
+|[v.01](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v0.1)| Code after lecture 1 and 2  | 
+|[v.02](#)| Code after completion of assignment 1
 # License
 
 # Credits
