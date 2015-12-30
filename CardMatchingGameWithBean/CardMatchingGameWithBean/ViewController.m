@@ -15,18 +15,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property(nonatomic) NSInteger flipsCount;
 
-//Assignment: 1
-//create a property of type Deck type called _game
+
 @property(strong, nonatomic) PlayingCardDeck *deck;
 
 @end
 
 @implementation ViewController
 
-
-//Assignment: 1
-//lazy instatiation of deck of cards
-//if there is no deck, create it
 -(PlayingCardDeck *)deck
 {
     if (!(_deck)) {
@@ -48,28 +43,20 @@
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     
-    //Assignment: 1
-    // Everytime the user clicks on a card, we will draw a random card
-    // We use the instance of our deck that we will draw from
-    // We return a Card type
-    Card *card = [self.deck drawRandomCard];
-    
     if ([sender.currentTitle length]) {
-        // show the back of a card
+     
         [sender setBackgroundImage:[UIImage imageNamed:@"pt-back-card.png"]
                           forState:UIControlStateNormal];
         [sender setTitle:@"" forState:UIControlStateNormal];
     } else {
+        Card *card = [self.deck drawRandomCard];
+        if (card) {
         [sender setBackgroundImage:[UIImage imageNamed:@"pt-front-card.png"]
                           forState:UIControlStateNormal];
-        
-        //Assignment: 1
-        //We created contents that returns a string of rank + suit
-        //We implement that method so we don't have to manually type (@"%@, %@",card.rank, card.suit);
         [sender setTitle:[card contents] forState:UIControlStateNormal];
-
-    }
     
+        }
+    }
     self.flipsCount++;
 
 } 
