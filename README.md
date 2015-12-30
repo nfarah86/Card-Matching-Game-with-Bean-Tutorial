@@ -11,6 +11,9 @@ I used some classes not mentioned in the lectures, which I will go over during t
 |---|---|
 |[v.01](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v0.1)| Code after lecture 1 and 2  | 
 |[v.02](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.02)| Code after completion of assignment 1
+|[v.03](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.03)| Code after lecture 1 and 2  | 
+
+
 # License
 
 # Credits
