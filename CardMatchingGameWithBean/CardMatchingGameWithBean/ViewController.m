@@ -42,7 +42,6 @@
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
-    
     if ([sender.currentTitle length]) {
      
         [sender setBackgroundImage:[UIImage imageNamed:@"pt-back-card.png"]
@@ -51,7 +50,7 @@
     } else {
         Card *card = [self.deck drawRandomCard];
         if (card) {
-        [sender setBackgroundImage:[UIImage imageNamed:@"pt-front-card.png"]
+        [sender setBackgroundImage:[UIImage imageNamed:@"plainCard.jpg"]
                           forState:UIControlStateNormal];
         [sender setTitle:[card contents] forState:UIControlStateNormal];
     
