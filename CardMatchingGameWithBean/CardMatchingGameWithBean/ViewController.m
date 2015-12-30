@@ -10,23 +10,30 @@
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "Card.h"
+#import "CardMatchingGame.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property(nonatomic) NSInteger flipsCount;
 
-//Assignment: 1
-//create a property of type Deck type called _game
+
+
 @property(strong, nonatomic) PlayingCardDeck *deck;
+@property(nonatomic) CardMatchingGame* game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
 @implementation ViewController
 
 
-//Assignment: 1
-//lazy instatiation of deck of cards
-//if there is no deck, create it
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+
+
 -(PlayingCardDeck *)deck
 {
     if (!(_deck)) {
@@ -36,48 +43,48 @@
 }
 
 
--(void)setFlipsCount:(NSInteger)flipsCount
-{
-    if (flipsCount) {
-        _flipsCount = flipsCount;
-        self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %ld", self.flipsCount];
-        NSLog(@"Flips:%ld", self.flipsCount);
-    }
+-(CardMatchingGame *) game{
+    if (! _game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                           usingDeck:[self deck]];
+    return _game;
 }
+
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
-    
-    //Assignment: 1
-    // Everytime the user clicks on a card, we will draw a random card
-    // We use the instance of our deck that we will draw from
-    // We return a Card type
-    Card *card = [self.deck drawRandomCard];
-    
-    if ([sender.currentTitle length]) {
-        // show the back of a card
-        [sender setBackgroundImage:[UIImage imageNamed:@"pt-back-card.png"]
-                          forState:UIControlStateNormal];
-        [sender setTitle:@"" forState:UIControlStateNormal];
-    } else {
-        [sender setBackgroundImage:[UIImage imageNamed:@"pt-front-card.png"]
-                          forState:UIControlStateNormal];
-        
-        //Assignment: 1
-        //We created contents that returns a string of rank + suit
-        //We implement that method so we don't have to manually type (@"%@, %@",card.rank, card.suit);
-        [sender setTitle:[card contents] forState:UIControlStateNormal];
 
-    }
-    
-    self.flipsCount++;
+    NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+    [self.game chooseCardAtIndex:cardIndex];
+    [self updateUI];
 
-} 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
+
+-(void)updateUI
+{
+    for (UIButton* cardButton in self.cardButtons){
+        NSInteger cardIndex = [self.cardButtons indexOfObject:cardButton]; //cardButton is a card object
+        Card *card = [self.game cardAtIndex:cardIndex];
+        
+        
+        [cardButton setTitle: [self titleForCard:card] forState: UIControlStateNormal];
+        [cardButton setBackgroundImage: [self backgroundImageForCard:card] forState:UIControlStateNormal];
+        cardButton.enabled = !card.isMatched;
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
+    }
+}
+
+
+-(NSString*) titleForCard: (Card *) card
+{
+    return card.isChosen ? card.contents : @"";
+}
+
+-(UIImage*) backgroundImageForCard: (Card *) card
+{
+    return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
+}
+
+
 
 @end
