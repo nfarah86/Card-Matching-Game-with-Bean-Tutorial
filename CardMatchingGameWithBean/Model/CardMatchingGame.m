@@ -19,7 +19,9 @@
 
 - (NSMutableArray *) cards
 {
-    if (!_cards) _cards = [[NSMutableArray alloc] init];
+    if (!_cards) {
+        _cards = [[NSMutableArray alloc] init];
+    }
     return _cards;
     
 }
@@ -29,6 +31,7 @@
 {
     self = [super init];
     if (self) {
+        
         for (int i=0; i < count; i++) {
             Card* card = [deck drawRandomCard];
             if (card) {
