@@ -21,6 +21,10 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
+//  Assignment 2:
+//  Added a deal button to storyboard and made a connection to the ViewController
+@property (weak, nonatomic) IBOutlet UIButton *dealButton;
+
 @end
 
 @implementation ViewController
@@ -39,13 +43,17 @@
     if (!(_deck)) {
         _deck = [[PlayingCardDeck alloc] init];
     }
+    
     return _deck;
 }
 
 
 -(CardMatchingGame *) game{
-    if (! _game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                           usingDeck:[self deck]];
+    if (! _game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                  usingDeck:[self deck]];
+    }
+   
     return _game;
 }
 
@@ -85,6 +93,18 @@
     return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
 }
 
+
+//Assignment 2:
+// Deal new set of cards when button is pressed
+// Essentially, we want to reset the game, and start a new game
+- (IBAction)clickOnDeal:(UIButton *)sender
+{
+    if(sender) {
+        //when the deal button is clicked
+        self.game = nil;
+        [self updateUI];
+    }
+}
 
 
 @end

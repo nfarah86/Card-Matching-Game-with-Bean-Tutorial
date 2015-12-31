@@ -161,8 +161,18 @@
                                     <action selector="touchCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w8T-S2-gBh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-zP-tTZ">
+                                <rect key="frame" x="339" y="463" width="65" height="30"/>
+                                <state key="normal" title="Deal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickOnDeal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y22-ZQ-TOM"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
-                                <rect key="frame" x="61" y="488" width="285" height="92"/>
+                                <rect key="frame" x="20" y="501" width="384" height="79"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -171,6 +181,7 @@
                         <color key="backgroundColor" red="0.1647058874" green="0.59607845540000004" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
+                        <outlet property="dealButton" destination="XgZ-zP-tTZ" id="dyO-TL-wyu"/>
                         <outlet property="scoreLabel" destination="ExH-9G-URD" id="oYz-EF-sz5"/>
                         <outletCollection property="cardButtons" destination="ped-6B-BPO" id="g5F-5N-odZ"/>
                         <outletCollection property="cardButtons" destination="C7E-sz-wDP" id="IVd-ki-sTn"/>
