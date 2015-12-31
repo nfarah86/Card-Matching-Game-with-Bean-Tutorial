@@ -42,7 +42,6 @@
 {
     if (!(_deck)) {
         _deck = [[PlayingCardDeck alloc] init];
-        NSLog(@"DECK IS NIL");
     }
     
     return _deck;
@@ -53,7 +52,6 @@
     if (! _game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
-        NSLog(@"GAME IS NIL");
     }
    
     return _game;
