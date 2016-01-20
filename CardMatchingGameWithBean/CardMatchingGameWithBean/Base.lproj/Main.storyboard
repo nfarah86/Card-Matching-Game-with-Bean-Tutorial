@@ -185,6 +185,9 @@
                                     <segment title="3-Card Match Game"/>
                                 </segments>
                                 <color key="tintColor" red="0.23956757482739799" green="0.48220797035787621" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="pickMatchGame:" destination="BYZ-38-t0r" eventType="valueChanged" id="rT2-YL-3N9"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058874" green="0.59607845540000004" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
@@ -192,6 +195,7 @@
                     <connections>
                         <outlet property="dealButton" destination="XgZ-zP-tTZ" id="dyO-TL-wyu"/>
                         <outlet property="scoreLabel" destination="ExH-9G-URD" id="oYz-EF-sz5"/>
+                        <outlet property="segmentedControl" destination="Uqf-66-io6" id="nhW-15-jNw"/>
                         <outletCollection property="cardButtons" destination="ped-6B-BPO" id="g5F-5N-odZ"/>
                         <outletCollection property="cardButtons" destination="C7E-sz-wDP" id="IVd-ki-sTn"/>
                         <outletCollection property="cardButtons" destination="69N-pE-9I9" id="xUY-Gh-RK0"/>

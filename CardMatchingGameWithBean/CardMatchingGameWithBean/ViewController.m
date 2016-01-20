@@ -21,9 +21,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
-//  Assignment 2:
-//  Added a deal button to storyboard and made a connection to the ViewController
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -65,8 +64,8 @@
     [self.game chooseCardAtIndex:cardIndex];
     [self updateUI];
 
-
 }
+
 
 -(void)updateUI
 {
@@ -88,21 +87,28 @@
     return card.isChosen ? card.contents : @"";
 }
 
+
 -(UIImage*) backgroundImageForCard: (Card *) card
 {
     return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
 }
 
 
-//Assignment 2:
-// Deal new set of cards when button is pressed
-// Essentially, we want to reset the game, and start a new game
 - (IBAction)clickOnDeal:(UIButton *)sender
 {
     if(sender) {
         //when the deal button is clicked
         self.game = nil;
         [self updateUI];
+    }
+}
+
+
+- (IBAction)pickMatchGame:(UISegmentedControl *)sender
+{
+    if (sender) {
+        NSInteger segmentedIndex = [self.segmentedControl selectedSegmentIndex];
+        NSLog(@"segmentedIndex %ld", segmentedIndex);
     }
 }
 
