@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
+
+// Dragged UISegmentedIndex from UI to ViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
@@ -104,6 +106,9 @@
 }
 
 
+// Assignment 2, Take 3
+// This method gets the segmentIndex that shows what game the
+// user wants to play
 - (IBAction)pickMatchGame:(UISegmentedControl *)sender
 {
     if (sender) {
