@@ -58,16 +58,24 @@
 
 - (int)match:(NSArray *)otherCards;
 {
-    int score;
-    if([otherCards count] == 1){
+    int score = 0;
+    if([otherCards count] == 2){
         PlayingCard *otherCard = [otherCards firstObject];
         if(otherCard.rank == self.rank){
             score = 4;
         } else if(otherCard.suit == self.suit){
             score = 1;
         }
+        
     }
+    
+    if ([otherCards count] == 3 ) {
+        NSLog(@"3-CARD GAME MATCH");
+        score = 1;
+    }
+    
     return score;
+
 }
 
 

@@ -63,7 +63,12 @@
 {
 
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:cardIndex];
+    
+    // Assignment 2, Task 3
+    // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
+    
+    NSInteger segmentIndex = [self.segmentedControl selectedSegmentIndex];
+    [self.game chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex: (NSInteger) segmentIndex];
     [self updateUI];
 
 }
@@ -73,9 +78,7 @@
 {
     for (UIButton* cardButton in self.cardButtons){
         NSInteger cardIndex = [self.cardButtons indexOfObject:cardButton]; //cardButton is a card object
-        Card *card = [self.game cardAtIndex:cardIndex];
-        
-        
+        Card *card = [self.game cardAtIndex:cardIndex];        
         [cardButton setTitle: [self titleForCard:card] forState: UIControlStateNormal];
         [cardButton setBackgroundImage: [self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
@@ -106,14 +109,15 @@
 }
 
 
-// Assignment 2, Take 3
+// Assignment 2, Task 3
 // This method gets the segmentIndex that shows what game the
 // user wants to play
 - (IBAction)pickMatchGame:(UISegmentedControl *)sender
 {
     if (sender) {
-        NSInteger segmentedIndex = [self.segmentedControl selectedSegmentIndex];
-        NSLog(@"segmentedIndex %ld", segmentedIndex);
+        // restart the game
+        self.game = nil;
+        [self updateUI];
     }
 }
 

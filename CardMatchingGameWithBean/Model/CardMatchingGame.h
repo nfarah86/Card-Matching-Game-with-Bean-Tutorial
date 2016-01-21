@@ -15,7 +15,9 @@
 
 -(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
 
--(void)chooseCardAtIndex:(NSUInteger)index;
+// Assignment 2, Task 3
+// modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
+-(void)chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex:(NSInteger) segmentedControlIndex;
 
 -(Card *)cardAtIndex: (NSUInteger) index;
 
