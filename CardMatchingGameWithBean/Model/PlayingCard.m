@@ -59,14 +59,19 @@
 - (int)match:(NSArray *)otherCards;
 {
     int score = 0;
+    PlayingCard *card1 = otherCards[0];
+    PlayingCard *card2 = otherCards[1];
+    
+    NSLog(@"HI");
+    
     if([otherCards count] == 2){
-        PlayingCard *otherCard = [otherCards firstObject];
-        if(otherCard.rank == self.rank){
+        if(card1.rank == card2.rank){
             score = 4;
-        } else if(otherCard.suit == self.suit){
+            NSLog(@"rank matched %ld, %ld", card1.rank, card2.rank);
+        } else if(card1.suit == card2.suit) {
             score = 1;
+            NSLog(@"suit matched %@, %@", card1.suit, card2.suit);
         }
-        
     }
     
     if ([otherCards count] == 3 ) {
@@ -74,6 +79,9 @@
         score = 1;
     }
     
+    //NSLog(@"suit matched %@, %@", card1.suit, card2.suit);
+    
+    NSLog(@"SCORE IS: %d", score);
     return score;
 
 }

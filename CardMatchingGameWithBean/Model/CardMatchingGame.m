@@ -75,52 +75,54 @@ static const int COST_TO_CHOOSE = 1;
     // card's index
     
     Card *card = [self cardAtIndex:cardIndex];
+    [self.chosenCards addObject:card];
+    self.score -= COST_TO_CHOOSE;
+
+
     if (!card.isMatched) {
         if (card.isChosen) {
             card.chosen = NO;
+            [self.chosenCards removeObject:card];
+
         } else {
             for (Card *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
-                    
-                    
-                    [self.chosenCards addObject:otherCard];
                     
                     NSInteger cardsInArray = [self _differentiateTwoAndThreeCardGames:segmentedControlIndex];
                     
                     NSLog(@"CARDS IN ARRAY = %ld", [self.chosenCards count]);
                     
-                    if (cardsInArray == 2 || cardsInArray == 3) {
+                    if (cardsInArray) {
                          NSLog(@"CARDS IN ARRAY 2 or 3 = %ld", [self.chosenCards count]);
                         int matchScore = [card match:self.chosenCards];
-                        
-                        self.chosenCards = [NSMutableArray array];
-                        NSLog(@"chosenCards reset %ld", [self.chosenCards count]);
                 
-                    
-                       
-                        // bug - cards may not be flipped and messes up
-                        // with what is in chosenCards
-                        
-                        //fix
                         
                         if (matchScore) {
                             self.score += (matchScore * MATCH_BONUS);
                             card.matched = YES;
                             otherCard.matched = YES;
+                            self.chosenCards = [NSMutableArray array];
+                            
+                            NSLog(@"chosenCards reset = matched 2 card %ld", [self.chosenCards count]);
                         } else {
                             self.score -= MISMATCH_PENALTY;
+                            [self.chosenCards removeObject:otherCard];
                             otherCard.chosen = NO;
+                            NSLog(@"chosenCards no reset- 1 card%ld", [self.chosenCards count]);
+
                         }
+                        
                         break;
                     }
+                   
                 }
-
-                self.score -= COST_TO_CHOOSE;
-                card.chosen = YES;
+                
             }
+            
+            card.chosen = YES;
+
         }
   }
-//added {
 }
 
 -(NSInteger) _differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
