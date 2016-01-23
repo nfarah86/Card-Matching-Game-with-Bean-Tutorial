@@ -66,7 +66,6 @@
 - (int)match:(NSArray *)otherCards;
 {
     int score = 0;
-    NSLog(@"OTHER CARDS %ld",[otherCards count]);
     
     PlayingCard *card1 = otherCards[0];
     PlayingCard *card2 = otherCards[1];
@@ -80,7 +79,6 @@
     }
     
     if ([otherCards count] == 3 ) {
-        NSLog(@"3-CARD GAME MATCH");
         
          if(!(self.matchedCards)) self.matchedCards = [NSMutableArray new];
         
@@ -97,31 +95,43 @@
                             if ([self.matchedCards count] == 0) {
                                 [self.matchedCards addObject:firstCard];
                                 [self.matchedCards addObject:secondCard];
-                                score = 4;
                             } else if (![self.matchedCards containsObject:firstCard]) {
                                 [self.matchedCards addObject:firstCard];
-                                score = 4;
                             } else if (![self.matchedCards containsObject:secondCard]) {
                                 [self.matchedCards addObject:secondCard];
-                                score = 4;
                             }
                             
                         } else if(firstCard.suit == secondCard.suit) {
                             if ([self.matchedCards count] == 0) {
                                 [self.matchedCards addObject:firstCard];
                                 [self.matchedCards addObject:secondCard];
-                                score = 2;
                             } else if (![self.matchedCards containsObject:firstCard]) {
                                 [self.matchedCards addObject:firstCard];
-                                score = 2;
                             } else if (![self.matchedCards containsObject:secondCard]) {
                                 [self.matchedCards addObject:secondCard];
-                                score = 2;
                             }
                         }
                 }
             }
         }
+    
+    
+        if ([self.matchedCards count] == 3) {
+            
+            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank]))
+            {
+                score = 6;
+            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit] && [self.matchedCards[1]suit] == [self.matchedCards[2]suit])) {
+                score = 5;
+            }
+        } else if ([self.matchedCards count] == 2) {
+            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank])) {
+                score = 3;
+            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit])) {
+                score = 2;
+            }
+        }
+    
     }
     
     NSLog(@"SCORE IS: %d", score);

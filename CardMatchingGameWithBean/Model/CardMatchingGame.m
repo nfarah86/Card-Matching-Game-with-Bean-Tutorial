@@ -111,15 +111,16 @@ static const int COST_TO_CHOOSE = 1;
                             NSLog(@"chosenCards 2 cards didn't match %ld", [self.chosenCards count]);
 
                         } else if (matchScore == 0 && cardsInArray == 3) {
-                            Card* card1 = self.chosenCards[0];
-                            Card* card2 = self.chosenCards [1];
+                                Card* card1 = self.chosenCards[0];
+                                Card* card2 = self.chosenCards [1];
                             
-                            card1.chosen = NO;
-                            card2.chosen = NO;
-                            
-                            [self.chosenCards removeObject:card1];
-                            [self.chosenCards removeObject:card2];
-        
+                                self.score -= MISMATCH_PENALTY;
+
+                                card1.chosen = NO;
+                                card2.chosen = NO;
+                        
+                                [self.chosenCards removeObject:card1];
+                                [self.chosenCards removeObject:card2];
                         }
                         
                         break;
