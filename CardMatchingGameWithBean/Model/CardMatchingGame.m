@@ -7,6 +7,7 @@
 //
 
 #import "CardMatchingGame.h"
+#import "PlayingCard.h"
 
 @interface CardMatchingGame()
 
@@ -76,7 +77,7 @@ static const int COST_TO_CHOOSE = 1;
     
     Card *card = [self cardAtIndex:cardIndex];
     [self.chosenCards addObject:card];
-    self.score -= COST_TO_CHOOSE;
+     self.score -= COST_TO_CHOOSE;
 
 
     if (!card.isMatched) {
@@ -95,8 +96,7 @@ static const int COST_TO_CHOOSE = 1;
                     if (cardsInArray) {
                          NSLog(@"CARDS IN ARRAY 2 or 3 = %ld", [self.chosenCards count]);
                         int matchScore = [card match:self.chosenCards];
-                
-                        
+
                         if (matchScore) {
                             self.score += (matchScore * MATCH_BONUS);
                             card.matched = YES;
@@ -104,25 +104,33 @@ static const int COST_TO_CHOOSE = 1;
                             self.chosenCards = [NSMutableArray array];
                             
                             NSLog(@"chosenCards reset = matched 2 card %ld", [self.chosenCards count]);
-                        } else {
+                        } else if (matchScore == 0 && cardsInArray == 2) {
                             self.score -= MISMATCH_PENALTY;
                             [self.chosenCards removeObject:otherCard];
                             otherCard.chosen = NO;
-                            NSLog(@"chosenCards no reset- 1 card%ld", [self.chosenCards count]);
+                            NSLog(@"chosenCards 2 cards didn't match %ld", [self.chosenCards count]);
 
+                        } else if (matchScore == 0 && cardsInArray == 3) {
+                            Card* card1 = self.chosenCards[0];
+                            Card* card2 = self.chosenCards [1];
+                            
+                            card1.chosen = NO;
+                            card2.chosen = NO;
+                            
+                            [self.chosenCards removeObject:card1];
+                            [self.chosenCards removeObject:card2];
+        
                         }
                         
                         break;
                     }
-                   
                 }
                 
             }
-            
-            card.chosen = YES;
-
+        
+        card.chosen = YES;
         }
-  }
+    }
 }
 
 -(NSInteger) _differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex

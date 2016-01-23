@@ -8,6 +8,13 @@
 
 #import "PlayingCard.h"
 
+@interface PlayingCard ()
+
+@property (nonatomic, strong) NSMutableArray* matchedCards;
+
+
+@end
+
 @implementation PlayingCard
 
 -(NSString* )contents
@@ -59,32 +66,72 @@
 - (int)match:(NSArray *)otherCards;
 {
     int score = 0;
+    NSLog(@"OTHER CARDS %ld",[otherCards count]);
+    
     PlayingCard *card1 = otherCards[0];
     PlayingCard *card2 = otherCards[1];
-    
-    NSLog(@"HI");
     
     if([otherCards count] == 2){
         if(card1.rank == card2.rank){
             score = 4;
-            NSLog(@"rank matched %ld, %ld", card1.rank, card2.rank);
         } else if(card1.suit == card2.suit) {
             score = 1;
-            NSLog(@"suit matched %@, %@", card1.suit, card2.suit);
         }
     }
     
     if ([otherCards count] == 3 ) {
         NSLog(@"3-CARD GAME MATCH");
-        score = 1;
+        
+         if(!(self.matchedCards)) self.matchedCards = [NSMutableArray new];
+        
+        for (int i = 0; i <= ([otherCards count]-1); i++) {
+            for (int j= 1; j<= ([otherCards count]-1); j++) {
+                if (i != j) {
+                    
+                    PlayingCard* firstCard = otherCards[i];
+                    PlayingCard* secondCard = otherCards[j];
+                
+                
+                        if (firstCard.rank == secondCard.rank) {
+                        
+                            if ([self.matchedCards count] == 0) {
+                                [self.matchedCards addObject:firstCard];
+                                [self.matchedCards addObject:secondCard];
+                                score = 4;
+                            } else if (![self.matchedCards containsObject:firstCard]) {
+                                [self.matchedCards addObject:firstCard];
+                                score = 4;
+                            } else if (![self.matchedCards containsObject:secondCard]) {
+                                [self.matchedCards addObject:secondCard];
+                                score = 4;
+                            }
+                            
+                        } else if(firstCard.suit == secondCard.suit) {
+                            if ([self.matchedCards count] == 0) {
+                                [self.matchedCards addObject:firstCard];
+                                [self.matchedCards addObject:secondCard];
+                                score = 2;
+                            } else if (![self.matchedCards containsObject:firstCard]) {
+                                [self.matchedCards addObject:firstCard];
+                                score = 2;
+                            } else if (![self.matchedCards containsObject:secondCard]) {
+                                [self.matchedCards addObject:secondCard];
+                                score = 2;
+                            }
+                        }
+                }
+            }
+        }
     }
-    
-    //NSLog(@"suit matched %@, %@", card1.suit, card2.suit);
     
     NSLog(@"SCORE IS: %d", score);
     return score;
-
+                
 }
+
+
+
+
 
 
 @end
