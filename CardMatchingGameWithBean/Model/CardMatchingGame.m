@@ -7,7 +7,6 @@
 //
 
 #import "CardMatchingGame.h"
-#import "PlayingCard.h"
 
 @interface CardMatchingGame()
 
@@ -91,10 +90,7 @@ static const int COST_TO_CHOOSE = 1;
                     
                     NSInteger cardsInArray = [self _differentiateTwoAndThreeCardGames:segmentedControlIndex];
                     
-                    NSLog(@"CARDS IN ARRAY = %ld", [self.chosenCards count]);
-                    
                     if (cardsInArray) {
-                         NSLog(@"CARDS IN ARRAY 2 or 3 = %ld", [self.chosenCards count]);
                         int matchScore = [card match:self.chosenCards];
 
                         if (matchScore) {
@@ -102,20 +98,18 @@ static const int COST_TO_CHOOSE = 1;
                             card.matched = YES;
                             otherCard.matched = YES;
                             self.chosenCards = [NSMutableArray array];
-                            
-                            NSLog(@"chosenCards reset = matched 2 card %ld", [self.chosenCards count]);
+
                         } else if (matchScore == 0 && cardsInArray == 2) {
                             self.score -= MISMATCH_PENALTY;
                             [self.chosenCards removeObject:otherCard];
                             otherCard.chosen = NO;
-                            NSLog(@"chosenCards 2 cards didn't match %ld", [self.chosenCards count]);
 
                         } else if (matchScore == 0 && cardsInArray == 3) {
                                 Card* card1 = self.chosenCards[0];
                                 Card* card2 = self.chosenCards [1];
                             
                                 self.score -= MISMATCH_PENALTY;
-
+                            
                                 card1.chosen = NO;
                                 card2.chosen = NO;
                         
@@ -129,7 +123,7 @@ static const int COST_TO_CHOOSE = 1;
                 
             }
         
-        card.chosen = YES;
+            card.chosen = YES;
         }
     }
 }

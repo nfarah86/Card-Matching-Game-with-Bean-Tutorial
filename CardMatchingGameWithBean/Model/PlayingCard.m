@@ -134,7 +134,6 @@
     
     }
     
-    NSLog(@"SCORE IS: %d", score);
     return score;
                 
 }
