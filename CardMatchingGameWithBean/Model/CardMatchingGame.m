@@ -27,7 +27,6 @@
         _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
-    
 }
 
 
@@ -74,6 +73,11 @@ static const int COST_TO_CHOOSE = 1;
     // get confused with segmentedControl's index and the
     // card's index
     
+    // other edits: since we are only going to be worried about
+    // 2 or 3 card game, I modified this function to differentiate between
+    // each game and process the info (segmentIndex, cardIndex) with respect
+    // to the specific match game.
+    
     Card *card = [self cardAtIndex:cardIndex];
     [self.chosenCards addObject:card];
      self.score -= COST_TO_CHOOSE;
@@ -83,7 +87,6 @@ static const int COST_TO_CHOOSE = 1;
         if (card.isChosen) {
             card.chosen = NO;
             [self.chosenCards removeObject:card];
-
         } else {
             for (Card *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
@@ -128,6 +131,7 @@ static const int COST_TO_CHOOSE = 1;
     }
 }
 
+// helper method to differentiate between a 2 and 3 card game
 -(NSInteger) _differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
 {
     if ([self.chosenCards count] == 2 && segmentControlIndex == 0) {

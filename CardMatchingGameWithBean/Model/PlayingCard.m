@@ -62,33 +62,34 @@
     }
 }
 
+// Assignment 2, Task 3
+// This is how the card matches against themselves and returns the score
 
 - (int)match:(NSArray *)otherCards;
 {
     int score = 0;
     
-    PlayingCard *card1 = otherCards[0];
-    PlayingCard *card2 = otherCards[1];
-    
+    // This is how a 2-card game matches against itself
     if([otherCards count] == 2){
-        if(card1.rank == card2.rank){
+        if([otherCards[0]rank] == [otherCards[1]rank]){
             score = 4;
-        } else if(card1.suit == card2.suit) {
+        } else if([otherCards[0]suit] == [otherCards[0]suit]) {
             score = 1;
         }
     }
     
+    // This is how a 3-card game matches against itself
     if ([otherCards count] == 3 ) {
         
          if(!(self.matchedCards)) self.matchedCards = [NSMutableArray new];
         
+        
+        // We check to see if there are matches
         for (int i = 0; i <= ([otherCards count]-1); i++) {
             for (int j= 1; j<= ([otherCards count]-1); j++) {
                 if (i != j) {
-                    
                     PlayingCard* firstCard = otherCards[i];
                     PlayingCard* secondCard = otherCards[j];
-                
                 
                         if (firstCard.rank == secondCard.rank) {
                         
@@ -116,6 +117,8 @@
         }
     
     
+        // Depending on how many cards are in the array and what the match is, a score is returned.
+        
         if ([self.matchedCards count] == 3) {
             
             if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank]))
@@ -135,12 +138,7 @@
     }
     
     return score;
-                
 }
-
-
-
-
 
 
 @end
