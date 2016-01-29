@@ -9,23 +9,22 @@
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGame()
-
-@property(nonatomic, readwrite) NSInteger score;
-@property(nonatomic, strong) NSMutableArray* cards; //of Card
+// consistent spacing
+@property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic, strong) NSMutableArray* cards;
 @end
-
 
 @implementation CardMatchingGame
 
 - (NSMutableArray *) cards
 {
+    // I recommend against using _.cards accessors. Use self.cards instead
     if (!_cards) {
         _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
     
 }
-
 
 -(instancetype) initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
@@ -45,12 +44,10 @@
     return self;
 }
 
-
--(Card *)cardAtIndex:(NSUInteger)index
+- (Card *)cardAtIndex:(NSUInteger)index
 {
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
-
 
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
