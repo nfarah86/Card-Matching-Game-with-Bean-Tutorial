@@ -16,7 +16,6 @@
     return [rankStrings[self.rank] stringByAppendingString:self.suit];
 }
 
-
 @synthesize suit = _suit; // because we provide setter AND getter
 
 
@@ -58,7 +57,7 @@
 
 - (int)match:(NSArray *)otherCards;
 {
-    int score;
+    int score = 0;
     if([otherCards count] == 1){
         PlayingCard *otherCard = [otherCards firstObject];
         if(otherCard.rank == self.rank){
