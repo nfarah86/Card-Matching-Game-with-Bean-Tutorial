@@ -83,13 +83,13 @@ static const int COST_TO_CHOOSE = 1;
      self.score -= COST_TO_CHOOSE;
 
 
-    if (!card.isMatched) {
-        if (card.isChosen) {
+    if (!card.matched) {
+        if (card.chosen) {
             card.chosen = NO;
             [self.chosenCards removeObject:card];
         } else {
             for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
+                if (otherCard.chosen && !otherCard.matched) {
                     
                     NSInteger cardsInArray = [self _differentiateTwoAndThreeCardGames:segmentedControlIndex];
                     

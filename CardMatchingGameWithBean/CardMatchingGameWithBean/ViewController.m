@@ -81,7 +81,7 @@
         Card *card = [self.game cardAtIndex:cardIndex];        
         [cardButton setTitle: [self titleForCard:card] forState: UIControlStateNormal];
         [cardButton setBackgroundImage: [self backgroundImageForCard:card] forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
+        cardButton.enabled = !card.matched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
     }
 }
@@ -90,7 +90,7 @@
 -(NSString*) titleForCard: (Card *) card
 {
     // return card.isChosen ? card.contents : @"";
-    return card.isChosen ? @"": card.contents;
+    return card.chosen ? @"": card.contents;
 
 }
 
@@ -98,7 +98,7 @@
 -(UIImage*) backgroundImageForCard: (Card *) card
 {
     // return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
-    return [UIImage imageNamed:(card.isChosen) ? @"pt-back-card.png" : @"plainCard"];
+    return [UIImage imageNamed:(card.chosen) ? @"pt-back-card.png" : @"plainCard"];
 }
 
 

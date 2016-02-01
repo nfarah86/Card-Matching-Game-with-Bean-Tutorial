@@ -73,7 +73,7 @@
     if([otherCards count] == 2){
         if([otherCards[0]rank] == [otherCards[1]rank]){
             score = 4;
-        } else if([otherCards[0]suit] == [otherCards[0]suit]) {
+        } else if([otherCards[0]suit] == [otherCards[1]suit]) {
             score = 1;
         }
     }
@@ -121,25 +121,35 @@
         
         if ([self.matchedCards count] == 3) {
             
-            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank]))
-            {
+            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank])) {
                 score = 6;
+                NSLog(@"6");
             } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit] && [self.matchedCards[1]suit] == [self.matchedCards[2]suit])) {
                 score = 5;
-            }
-        } else if ([self.matchedCards count] == 2) {
-            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank])) {
+                NSLog(@"5");
+            } else if ([self.matchedCards[0]rank] == [self.matchedCards[1]rank]) {
                 score = 3;
-            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit])) {
+            } else if ([self.matchedCards[0]suit] == [self.matchedCards[1]suit]) {
                 score = 2;
             }
         }
+        else if ([self.matchedCards count] == 2) {
+            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank])) {
+                score = 3;
+                NSLog(@"3");
+            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit])) {
+                score = 2;
+                NSLog(@"2");
+            }
+            
+        }
+        
     
     }
+
     
+    NSLog(@"score is %ld, count %ld", score, [self.matchedCards count]);
     return score;
 }
 
-
 @end
-
