@@ -64,7 +64,6 @@
 
 // Assignment 2, Task 3
 // This is how the card matches against themselves and returns the score
-
 - (int)match:(NSArray *)otherCards;
 {
     int score = 0;
@@ -118,7 +117,6 @@
     
     
         // Depending on how many cards are in the array and what the match is, a score is returned.
-        
         if ([self.matchedCards count] == 3) {
             
             if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank])) {
@@ -148,7 +146,7 @@
     }
 
     
-    NSLog(@"score is %ld, count %ld", score, [self.matchedCards count]);
+    NSLog(@"score is %ld, count %d", score, [self.matchedCards count]);
     return score;
 }
 

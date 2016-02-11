@@ -12,16 +12,16 @@
 
 @interface CardMatchingGame : NSObject
 
-
--(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
+- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
 
 // Assignment 2, Task 3
-// modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
--(void)chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex:(NSInteger) segmentedControlIndex;
+// modified chooseCardAtIndex: method to include the segmentedControl index that
+// indicates which game the user want to play
+- (void)chooseCardAtIndex:(NSUInteger)cardIndex
+ getSegmentedControlIndex:(NSInteger)segmentedControlIndex;
 
--(Card *)cardAtIndex: (NSUInteger) index;
+- (Card *)cardAtIndex:(NSUInteger)index;
 
 @property(nonatomic, readonly) NSInteger score;
-
 
 @end
