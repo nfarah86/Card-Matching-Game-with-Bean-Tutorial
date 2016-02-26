@@ -67,6 +67,51 @@
 
 - (int)match:(NSArray *)otherCards;
 {
+
+    /*
+
+     This logic belongs in a helper class. OOP principles: the card isn't the noun doing the verb of matching against
+     other cards; you match cards against each other.
+
+     Stuff from today's discussion is below.
+
+     Pseudocode of a simplified scoring process that scales because it uses combinations of cards:
+
+     cards = [A, B, C]
+     combos = combinationsFromCards(cards)
+     // combos = [[A, B], [B, C], [A, C]]
+
+     rank_matches = 0
+     suit_matches = 0
+
+     for X, Y in combos:
+       if X.rank == Y.rank:
+         rank_matches += 1
+       if X.suit == Y.suit:
+         suit_matches += 1
+
+     if rank_matches == 3:
+       return 6
+     elif suit_matches == 3:
+       return 5
+     elif rank_matches == 2:
+       return 3
+     elif suit_matches == 2:
+       return 2
+
+     JavaScript to demonstrate how to generate combinations of items:
+
+     var total = 4;
+     var cards = ['2 of spades', '4 of hearts', '7 of diamonds', 'Ace of clubs']
+     for (var x = 0; x < total - 1; x++) {
+       for (var y = x + 1; y < total; y++) {
+         // do something with the unique combo of cards[x] and cards[y] here
+       }
+     }
+
+
+     */
+
     int score = 0;
     
     // This is how a 2-card game matches against itself

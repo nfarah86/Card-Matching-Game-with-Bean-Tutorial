@@ -67,6 +67,16 @@ static const int COST_TO_CHOOSE = 1;
 // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
 -(void)chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex:(NSInteger) segmentedControlIndex
 {
+
+    /*
+
+     Consider replacing this app logic entirely.
+
+     This method does too much. It scores cards, counts matches, handles cost to choose/mismatch penalty,
+     and un-chooses unmatched cards. Each of those methods could live on their own to simplify game logic.
+
+     */
+
     // Assignment 2, Task 3
     // modify cardAtIndex: below to take cardIndex
     // I just renamed index to cardIndex, so we don't
@@ -134,6 +144,12 @@ static const int COST_TO_CHOOSE = 1;
 // helper method to differentiate between a 2 and 3 card game
 -(NSInteger) _differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
 {
+    /*
+
+     Consider dropping the self.chosenCards count. It should not be necessary if you have set up your
+     segmentControlIndex properly.
+
+     */
     if ([self.chosenCards count] == 2 && segmentControlIndex == 0) {
         return 2;
     } else if ([self.chosenCards count] == 3 && segmentControlIndex == 1) {
