@@ -64,90 +64,58 @@
 
 // Assignment 2, Task 3
 // This is how the card matches against themselves and returns the score
-- (int)match:(NSArray *)otherCards;
+- (int)match:(NSMutableArray *)cardsToBeMatched;
 {
-    int score = 0;
+    NSMutableArray* comboOfCards = [self combinationOfCards:cardsToBeMatched];
     
-    // This is how a 2-card game matches against itself
-    if([otherCards count] == 2){
-        if([otherCards[0]rank] == [otherCards[1]rank]){
-            score = 4;
-        } else if([otherCards[0]suit] == [otherCards[1]suit]) {
-            score = 1;
+    int rankMatches = 0;
+    int suitMatches = 0;
+    
+    for (NSMutableArray* cardCombo in comboOfCards) {
+        PlayingCard* firstCard = cardCombo[0];
+        PlayingCard* secondCard = cardCombo[1];
+        
+        if (firstCard.rank == secondCard.rank) {
+            rankMatches += 1;
+        }
+        
+        if (firstCard.suit == secondCard.suit) {
+            suitMatches += 1;
         }
     }
     
-    // This is how a 3-card game matches against itself
-    if ([otherCards count] == 3 ) {
-        
-         if(!(self.matchedCards)) self.matchedCards = [NSMutableArray new];
-        
-        
-        // We check to see if there are matches
-        for (int i = 0; i <= ([otherCards count]-1); i++) {
-            for (int j= 1; j<= ([otherCards count]-1); j++) {
-                if (i != j) {
-                    PlayingCard* firstCard = otherCards[i];
-                    PlayingCard* secondCard = otherCards[j];
-                
-                        if (firstCard.rank == secondCard.rank) {
-                        
-                            if ([self.matchedCards count] == 0) {
-                                [self.matchedCards addObject:firstCard];
-                                [self.matchedCards addObject:secondCard];
-                            } else if (![self.matchedCards containsObject:firstCard]) {
-                                [self.matchedCards addObject:firstCard];
-                            } else if (![self.matchedCards containsObject:secondCard]) {
-                                [self.matchedCards addObject:secondCard];
-                            }
-                            
-                        } else if(firstCard.suit == secondCard.suit) {
-                            if ([self.matchedCards count] == 0) {
-                                [self.matchedCards addObject:firstCard];
-                                [self.matchedCards addObject:secondCard];
-                            } else if (![self.matchedCards containsObject:firstCard]) {
-                                [self.matchedCards addObject:firstCard];
-                            } else if (![self.matchedCards containsObject:secondCard]) {
-                                [self.matchedCards addObject:secondCard];
-                            }
-                        }
-                }
-            }
+    if ([comboOfCards count] == 3) {
+        if (rankMatches == 3) {
+            return 7;
+        } else if (suitMatches == 3) {
+            return 6;
+        } else if (rankMatches == 1) {
+            return 4;
+        } else if (suitMatches == 1) {
+            return 3;
         }
-    
-    
-        // Depending on how many cards are in the array and what the match is, a score is returned.
-        if ([self.matchedCards count] == 3) {
-            
-            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank] && [self.matchedCards[1]rank] == [self.matchedCards[2]rank])) {
-                score = 6;
-                NSLog(@"6");
-            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit] && [self.matchedCards[1]suit] == [self.matchedCards[2]suit])) {
-                score = 5;
-                NSLog(@"5");
-            } else if ([self.matchedCards[0]rank] == [self.matchedCards[1]rank]) {
-                score = 3;
-            } else if ([self.matchedCards[0]suit] == [self.matchedCards[1]suit]) {
-                score = 2;
-            }
+    } else {
+        if (rankMatches == 1) {
+            return 2;
+        } else if (suitMatches == 1) {
+            return 1;
         }
-        else if ([self.matchedCards count] == 2) {
-            if (([self.matchedCards[0]rank] == [self.matchedCards[1]rank])) {
-                score = 3;
-                NSLog(@"3");
-            } else if (([self.matchedCards[0]suit] == [self.matchedCards[1]suit])) {
-                score = 2;
-                NSLog(@"2");
-            }
-            
-        }
-        
-    
     }
 
+    return 0;
     
-    NSLog(@"score is %ld, count %d", score, [self.matchedCards count]);
-    return score;
+}
+
+-(NSMutableArray *)combinationOfCards: (NSMutableArray *)cardsToGenerateCombos
+{
+    NSMutableArray* cardCombo = [NSMutableArray new];
+    for (int x = 0; x < [cardsToGenerateCombos count] - 1; x++) {
+        for (int y = x + 1; y < [cardsToGenerateCombos count]; y++) {
+            [cardCombo addObject:@[cardsToGenerateCombos[x], cardsToGenerateCombos[y]]];
+        }
+    }
+    
+    return cardCombo;
 }
 
 @end

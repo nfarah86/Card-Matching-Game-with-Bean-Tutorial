@@ -81,6 +81,7 @@
             card.chosen = NO;
             [self.chosenCards removeObject:card];
         } else {
+            card.chosen = YES;
             NSInteger cardsInArray =
                 [self _differentiateTwoAndThreeCardGames:
                           segmentedControlIndex];
@@ -92,7 +93,6 @@
                     [self unmatchCards:self.chosenCards];
                 }
             }
-            card.chosen = YES;
         }
     }
 }
@@ -114,7 +114,7 @@ static const int COST_TO_CHOOSE = 1;
 
 -(void)matchCards: (NSMutableArray* ) userCards
 {
-    for (int i = 0; (i <= [userCards count]- 1); i++) {
+    for (int i = 0; i < [userCards count]; i++) {
         Card* cardToBeMatched = userCards[i];
         [self scoreGame: @"cards matched"];
         cardToBeMatched.matched = YES;
@@ -128,7 +128,6 @@ static const int COST_TO_CHOOSE = 1;
         Card* cardToBeUnMatched = usersCards[i];
         [self scoreGame:@"cards don't match"];
         [self.chosenCards removeObject:cardToBeUnMatched];
-        NSLog(@"CARDS AFTER BEING REMOVED %ld", [self.chosenCards count]);
         cardToBeUnMatched.chosen = NO;
     }
 }

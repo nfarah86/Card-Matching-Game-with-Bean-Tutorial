@@ -14,6 +14,6 @@
 @property(nonatomic) BOOL matched;
 
 
-- (int)match:(NSArray *)otherCards;
+- (int)match:(NSArray *)cardsToBeMatched;
 
 @end
