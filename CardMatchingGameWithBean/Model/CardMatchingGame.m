@@ -16,6 +16,7 @@
 // Assignment 2, Task 3
 // chosenCards: store users picked cards either from 2 or 3 match game
 @property (nonatomic, strong) NSMutableArray *chosenCards;
+@property (nonatomic) NSInteger matchScore;
 @end
 
 @implementation CardMatchingGame
@@ -53,13 +54,10 @@
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
-static const int MISMATCH_PENALTY = 2;
-static const int MATCH_BONUS = 4;
-static const int COST_TO_CHOOSE = 1;
-
 // Assignment 2, Task 3
 // modified chooseCardAtIndex: method to include the segmentedControl index that
 // indicates which game the user want to play
+
 - (void)chooseCardAtIndex:(NSUInteger)cardIndex
  getSegmentedControlIndex:(NSInteger)segmentedControlIndex
 {
@@ -76,67 +74,68 @@ static const int COST_TO_CHOOSE = 1;
 
     Card *card = [self cardAtIndex:cardIndex];
     [self.chosenCards addObject:card];
-    self.score -= COST_TO_CHOOSE;
-
+    [self scoreGame:@"picked a card"];
+    
     if (!card.matched) {
         if (card.chosen) {
             card.chosen = NO;
             [self.chosenCards removeObject:card];
         } else {
-            for (Card *otherCard in self.cards) {
-                if (otherCard.chosen && !otherCard.matched) {
-
-                    NSInteger cardsInArray =
-                        [self _differentiateTwoAndThreeCardGames:
-                                  segmentedControlIndex];
-
-                    if (cardsInArray) {
-                        int matchScore = [card match:self.chosenCards];
-
-                        if (matchScore) {
-                            self.score += (matchScore * MATCH_BONUS);
-                            card.matched = YES;
-                            otherCard.matched = YES;
-                            self.chosenCards = [NSMutableArray array];
-
-                        } else if (matchScore == 0 && cardsInArray == 2) {
-                            self.score -= MISMATCH_PENALTY;
-                            [self.chosenCards removeObject:otherCard];
-                            otherCard.chosen = NO;
-
-                        } else if (matchScore == 0 && cardsInArray == 3) {
-                            Card *card1 = self.chosenCards[0];
-                            Card *card2 = self.chosenCards[1];
-
-                            self.score -= MISMATCH_PENALTY;
-
-                            card1.chosen = NO;
-                            card2.chosen = NO;
-
-                            [self.chosenCards removeObject:card1];
-                            [self.chosenCards removeObject:card2];
-                        }
-
-                        break;
-                    }
+            NSInteger cardsInArray =
+                [self _differentiateTwoAndThreeCardGames:
+                          segmentedControlIndex];
+            if (cardsInArray) {
+                self.matchScore = [card match:self.chosenCards];
+                if (self.matchScore) {
+                    [self matchCards:self.chosenCards];
+                } else if (self.matchScore == 0) {
+                    [self unmatchCards:self.chosenCards];
                 }
             }
-
             card.chosen = YES;
         }
     }
 }
 
-// helper method to differentiate between a 2 and 3 card game
+static const int MISMATCH_PENALTY = 2;
+static const int MATCH_BONUS = 4;
+static const int COST_TO_CHOOSE = 1;
+
+-(void)scoreGame:(NSString *)indicator;
+{
+    if ([indicator isEqualToString:@"picked a card"]) {
+        self.score -= COST_TO_CHOOSE;
+    } else if ([indicator isEqualToString:@"cards matched"]) {
+        self.score += (self.matchScore * MATCH_BONUS);
+    } else if ([indicator isEqualToString:@"cards don't match"]) {
+        self.score -= MISMATCH_PENALTY;
+    }
+}
+
+-(void)matchCards: (NSMutableArray* ) userCards
+{
+    for (int i = 0; (i <= [userCards count]- 1); i++) {
+        Card* cardToBeMatched = userCards[i];
+        [self scoreGame: @"cards matched"];
+        cardToBeMatched.matched = YES;
+    }
+    self.chosenCards = [NSMutableArray array];
+}
+
+-(void) unmatchCards: (NSMutableArray *) usersCards
+{
+    for (int i = 0; (i < [usersCards count]-1); i++) {
+        Card* cardToBeUnMatched = usersCards[i];
+        [self scoreGame:@"cards don't match"];
+        [self.chosenCards removeObject:cardToBeUnMatched];
+        NSLog(@"CARDS AFTER BEING REMOVED %ld", [self.chosenCards count]);
+        cardToBeUnMatched.chosen = NO;
+    }
+}
+
 - (NSInteger)_differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
 {
-    if ([self.chosenCards count] == 2 && segmentControlIndex == 0) {
-        return 2;
-    } else if ([self.chosenCards count] == 3 && segmentControlIndex == 1) {
-        return 3;
-    } else {
-        return 0;
-    }
+    return [self.chosenCards count] == segmentControlIndex + 2 ? [self.chosenCards count]: 0;
 }
 
 @end
