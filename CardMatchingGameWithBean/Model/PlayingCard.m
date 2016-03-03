@@ -103,7 +103,6 @@
     }
 
     return 0;
-    
 }
 
 -(NSMutableArray *)combinationOfCards: (NSMutableArray *)cardsToGenerateCombos
