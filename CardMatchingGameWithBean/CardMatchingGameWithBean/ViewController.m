@@ -41,11 +41,9 @@
 
 -(PlayingCardDeck *)deck
 {
-    if (!(_deck)) {
-        _deck = [[PlayingCardDeck alloc] init];
-    }
-    
-    return _deck;
+    // Every time someone deals a deck or chooses a game, we will
+    // just create a new deck; so the deck is never exhausted
+    return [[PlayingCardDeck alloc] init];
 }
 
 
@@ -54,7 +52,7 @@
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
     }
-   
+    
     return _game;
 }
 

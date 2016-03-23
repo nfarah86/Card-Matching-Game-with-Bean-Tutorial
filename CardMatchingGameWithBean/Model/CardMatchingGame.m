@@ -7,6 +7,7 @@
 //
 
 #import "CardMatchingGame.h"
+#import "PlayingCardDeck.h"
 
 @interface CardMatchingGame ()
 
@@ -17,6 +18,7 @@
 // chosenCards: store users picked cards either from 2 or 3 match game
 @property (nonatomic, strong) NSMutableArray *chosenCards;
 @property (nonatomic) NSInteger matchScore;
+@property(strong, nonatomic) PlayingCardDeck *deck;
 @end
 
 @implementation CardMatchingGame
@@ -40,7 +42,7 @@
             Card *card = [deck drawRandomCard];
             if (card) {
                 [self.cards addObject:card];
-            } else {
+            } else {                
                 self = nil;
                 break;
             }
@@ -89,7 +91,7 @@
                 self.matchScore = [card match:self.chosenCards];
                 if (self.matchScore) {
                     [self matchCards:self.chosenCards];
-                } else if (self.matchScore == 0) {
+                } else {
                     [self unmatchCards:self.chosenCards];
                 }
             }
