@@ -42,7 +42,7 @@
             Card *card = [deck drawRandomCard];
             if (card) {
                 [self.cards addObject:card];
-            } else {                
+            } else {
                 self = nil;
                 break;
             }
