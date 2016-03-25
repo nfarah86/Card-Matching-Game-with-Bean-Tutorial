@@ -12,18 +12,20 @@
 #import "Card.h"
 #import "CardMatchingGame.h"
 
-@interface ViewController ()
-
-
+@interface ViewController () <CardMatchingGameDelegate>
 
 @property(strong, nonatomic) PlayingCardDeck *deck;
 @property(nonatomic) CardMatchingGame* game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gameDescriptionLabel;
 
-//  Assignment 2:
-//  Added a deal button to storyboard and made a connection to the ViewController
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
+
+// Assignment 2, Task 3
+// Dragged UISegmentedIndex from UI to ViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
 
 @end
 
@@ -36,35 +38,39 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-
-
 -(PlayingCardDeck *)deck
 {
-    if (!(_deck)) {
-        _deck = [[PlayingCardDeck alloc] init];
-    }
-    
-    return _deck;
+    // Every time someone deals a deck or chooses a game, we will
+    // just create a new deck; so the deck is never exhausted
+    return [[PlayingCardDeck alloc] init];
 }
-
 
 -(CardMatchingGame *) game{
     if (! _game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
+        // Assignment 2, Task 4
+        // We assign ourselves as the delegate
+        _game.delegate = self;
+        
+        // Assignment 2, Task 5
+        self.gameDescriptionLabel.text = @"New Match Game";
     }
-   
     return _game;
 }
-
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
 
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:cardIndex];
+    // Assignment 2, Task 4
+    [self.segmentedControl setEnabled: NO];
+    
+    // Assignment 2, Task 3
+    // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
+    NSInteger segmentIndex = [self.segmentedControl selectedSegmentIndex];
+    [self.game chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex: (NSInteger) segmentIndex];
     [self updateUI];
-
 
 }
 
@@ -72,16 +78,13 @@
 {
     for (UIButton* cardButton in self.cardButtons){
         NSInteger cardIndex = [self.cardButtons indexOfObject:cardButton]; //cardButton is a card object
-        Card *card = [self.game cardAtIndex:cardIndex];
-        
-        
+        Card *card = [self.game cardAtIndex:cardIndex];        
         [cardButton setTitle: [self titleForCard:card] forState: UIControlStateNormal];
         [cardButton setBackgroundImage: [self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.matched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
     }
 }
-
 
 -(NSString*) titleForCard: (Card *) card
 {
@@ -93,18 +96,64 @@
     return [UIImage imageNamed:(card.chosen) ? @"plainCard" : @"pt-back-card.png"];
 }
 
-
-//Assignment 2:
-// Deal new set of cards when button is pressed
-// Essentially, we want to reset the game, and start a new game
+// Assignment 2, Task 2
 - (IBAction)clickOnDeal:(UIButton *)sender
 {
     if(sender) {
-        //when the deal button is clicked
         self.game = nil;
+        // Assignment 2, Task 4
+        [self.segmentedControl setEnabled: YES];
         [self updateUI];
     }
 }
 
+// Assignment 2, Task 3
+// This method gets the segmentIndex of what game is played
+- (IBAction)pickMatchGame:(UISegmentedControl *)sender
+{
+    if (sender) {
+        self.game = nil;
+        [self.segmentedControl setEnabled: NO];
+        [self updateUI];
+    }
+}
+
+// Assignment 2, Task 5
+-(void)matchDescription:(NSMutableArray *) pickedCards didCardsMatch: (BOOL) status
+{
+    NSString* descriptionText = [self _labelDescription:pickedCards];
+    NSMutableString* describeMatchText = [descriptionText mutableCopy];
+    
+    if (status) {
+        [describeMatchText appendFormat: @"matched"];
+        self.gameDescriptionLabel.text = describeMatchText;
+    } else {
+        [describeMatchText appendFormat: @"don't Match"];
+        self.gameDescriptionLabel.text = describeMatchText;
+    }
+}
+
+// Assignment 2, Task 5
+-(NSString *) _labelDescription: (NSMutableArray *) pickedCards
+{
+    NSMutableString* labelDescription = [[NSMutableString alloc]init];
+    for (int i = 0; i < [pickedCards count]; i++) {
+        PlayingCard* pickedCard = pickedCards[i];
+        [labelDescription appendFormat:@"%ld%@ and ", pickedCard.rank, pickedCard.suit];
+    }
+    NSString* newLabelDescription = [NSString stringWithString:labelDescription];
+    NSRange replaceAnd= [labelDescription rangeOfString:@"and " options:NSBackwardsSearch];
+    if (replaceAnd.location != NSNotFound) {
+        newLabelDescription = [newLabelDescription stringByReplacingCharactersInRange:replaceAnd withString:@""];
+    }
+    return newLabelDescription;
+}
+
+// Assignment 2, Task 5
+-(void) cardDescription: (NSMutableArray *)pickedCards
+{
+    NSString* cardDescriptionText = [self _labelDescription:pickedCards];
+    self.gameDescriptionLabel.text = cardDescriptionText;
+}
 
 @end

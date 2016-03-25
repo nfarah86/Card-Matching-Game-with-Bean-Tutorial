@@ -8,10 +8,9 @@
 
 #import "Card.h"
 
-@interface Card()
+@interface Card ()
 
 @end
-
 
 @implementation Card
 

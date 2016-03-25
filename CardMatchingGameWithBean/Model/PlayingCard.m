@@ -8,6 +8,13 @@
 
 #import "PlayingCard.h"
 
+@interface PlayingCard ()
+
+@property (nonatomic, strong) NSMutableArray* matchedCards;
+
+
+@end
+
 @implementation PlayingCard
 
 -(NSString* )contents
@@ -46,7 +53,6 @@
     return _suit ? _suit : @"?";
 }
 
-
 - (void)setRank:(NSUInteger)rank
 {
     if (rank <= [PlayingCard maxRank]) {
@@ -54,21 +60,59 @@
     }
 }
 
-
-- (int)match:(NSArray *)otherCards;
+// Assignment 2, Task 3
+// This is how the card matches against themselves and returns the score
+- (int)match:(NSMutableArray *)cardsToBeMatched;
 {
-    int score = 0;
-    if([otherCards count] == 1){
-        PlayingCard *otherCard = [otherCards firstObject];
-        if(otherCard.rank == self.rank){
-            score = 4;
-        } else if(otherCard.suit == self.suit){
-            score = 1;
+    NSMutableArray* comboOfCards = [self combinationOfCards:cardsToBeMatched];
+    
+    int rankMatches = 0;
+    int suitMatches = 0;
+    
+    for (NSMutableArray* cardCombo in comboOfCards) {
+        PlayingCard* firstCard = cardCombo[0];
+        PlayingCard* secondCard = cardCombo[1];
+        
+        if (firstCard.rank == secondCard.rank) {
+            rankMatches += 1;
+        }
+        
+        if (firstCard.suit == secondCard.suit) {
+            suitMatches += 1;
         }
     }
-    return score;
+    
+    if ([comboOfCards count] == 3) {
+        if (rankMatches == 3) {
+            return 7;
+        } else if (suitMatches == 3) {
+            return 6;
+        } else if (rankMatches == 1) {
+            return 4;
+        } else if (suitMatches == 1) {
+            return 3;
+        }
+    } else {
+        if (rankMatches == 1) {
+            return 2;
+        } else if (suitMatches == 1) {
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
+-(NSMutableArray *)combinationOfCards: (NSMutableArray *)cardsToGenerateCombos
+{
+    NSMutableArray* cardCombo = [NSMutableArray new];
+    for (int x = 0; x < [cardsToGenerateCombos count] - 1; x++) {
+        for (int y = x + 1; y < [cardsToGenerateCombos count]; y++) {
+            [cardCombo addObject:@[cardsToGenerateCombos[x], cardsToGenerateCombos[y]]];
+        }
+    }
+    
+    return cardCombo;
+}
 
 @end
-
