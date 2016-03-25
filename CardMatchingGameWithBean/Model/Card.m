@@ -10,14 +10,11 @@
 
 @interface Card ()
 
+
 @end
 
 @implementation Card
 
-// We don't need to have a 'score' here.  However it is readonly
-// in the CardMatchingGame.h file.  We can just simply return a value here.
-// Score is not doing much here.
-// The CardMatchingGame will implement a 'score'.
 - (int)match:(NSArray *)otherCards
 {
     

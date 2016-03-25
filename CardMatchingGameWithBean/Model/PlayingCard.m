@@ -60,8 +60,6 @@
     }
 }
 
-// Assignment 2, Task 3
-// This is how the card matches against themselves and returns the score
 - (int)match:(NSMutableArray *)cardsToBeMatched;
 {
     NSMutableArray* comboOfCards = [self combinationOfCards:cardsToBeMatched];

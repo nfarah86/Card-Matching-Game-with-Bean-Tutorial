@@ -19,11 +19,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameDescriptionLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
-
-// Assignment 2, Task 3
-// Dragged UISegmentedIndex from UI to ViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 
@@ -35,13 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(PlayingCardDeck *)deck
 {
-    // Every time someone deals a deck or chooses a game, we will
-    // just create a new deck; so the deck is never exhausted
     return [[PlayingCardDeck alloc] init];
 }
 
@@ -49,11 +42,7 @@
     if (! _game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
-        // Assignment 2, Task 4
-        // We assign ourselves as the delegate
         _game.delegate = self;
-        
-        // Assignment 2, Task 5
         self.gameDescriptionLabel.text = @"New Match Game";
     }
     return _game;
@@ -63,11 +52,7 @@
 {
 
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-    // Assignment 2, Task 4
     [self.segmentedControl setEnabled: NO];
-    
-    // Assignment 2, Task 3
-    // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
     NSInteger segmentIndex = [self.segmentedControl selectedSegmentIndex];
     [self.game chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex: (NSInteger) segmentIndex];
     [self updateUI];
@@ -96,7 +81,6 @@
     return [UIImage imageNamed:(card.chosen) ? @"plainCard" : @"pt-back-card.png"];
 }
 
-// Assignment 2, Task 2
 - (IBAction)clickOnDeal:(UIButton *)sender
 {
     if(sender) {
@@ -107,8 +91,6 @@
     }
 }
 
-// Assignment 2, Task 3
-// This method gets the segmentIndex of what game is played
 - (IBAction)pickMatchGame:(UISegmentedControl *)sender
 {
     if (sender) {
@@ -118,7 +100,6 @@
     }
 }
 
-// Assignment 2, Task 5
 -(void)matchDescription:(NSMutableArray *) pickedCards didCardsMatch: (BOOL) status
 {
     NSString* descriptionText = [self _labelDescription:pickedCards];
@@ -133,7 +114,6 @@
     }
 }
 
-// Assignment 2, Task 5
 -(NSString *) _labelDescription: (NSMutableArray *) pickedCards
 {
     NSMutableString* labelDescription = [[NSMutableString alloc]init];
@@ -149,7 +129,6 @@
     return newLabelDescription;
 }
 
-// Assignment 2, Task 5
 -(void) cardDescription: (NSMutableArray *)pickedCards
 {
     NSString* cardDescriptionText = [self _labelDescription:pickedCards];

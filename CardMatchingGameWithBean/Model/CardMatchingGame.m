@@ -13,9 +13,6 @@
 
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards;
-
-// Assignment 2, Task 3
-// chosenCards: store users picked cards either from 2 or 3 match game
 @property (nonatomic, strong) NSMutableArray *chosenCards;
 @property (nonatomic) NSInteger matchScore;
 @property(strong, nonatomic) PlayingCardDeck *deck;
@@ -38,8 +35,6 @@
 {
     self = [super init];
     if (self) {
-        // Assignment 2, Task 3
-        // Instantiate chosenCards to be an empty array
         self.chosenCards = [NSMutableArray new];
         for (int i = 0; i < count; i++) {
             Card *card = [deck drawRandomCard];
@@ -59,22 +54,9 @@
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
-// Assignment 2, Task 3
-// modified chooseCardAtIndex: method to include the segmentedControl index that
-// indicates which game the user want to play
 - (void)chooseCardAtIndex:(NSUInteger)cardIndex
  getSegmentedControlIndex:(NSInteger)segmentedControlIndex
 {
-    // Assignment 2, Task 3
-    // modify cardAtIndex: below to take cardIndex
-    // I just renamed index to cardIndex, so we don't
-    // get confused with segmentedControl's index and the
-    // card's index
-
-    // other edits: since we are only going to be worried about
-    // 2 or 3 card game, I modified this function to differentiate between
-    // each game and process the info (segmentIndex, cardIndex) with respect
-    // to the specific match game.
     Card *card = [self cardAtIndex:cardIndex];
     [self.chosenCards addObject:card];
     [self.delegate cardDescription:self.chosenCards];
@@ -144,8 +126,6 @@ static const int COST_TO_CHOOSE = 1;
     return [self.chosenCards count] == segmentControlIndex + 2 ? [self.chosenCards count]: 0;
 }
 
-// Assignment 2, Task 4
-// Implemented delegate
 -(void) _didCardsMatch: (BOOL) resultOfCardMatch
 {
     [self.delegate matchDescription: self.chosenCards didCardsMatch: resultOfCardMatch];

@@ -10,10 +10,9 @@
 #import "Deck.h"
 #import "Card.h"
 
-// Assignment 2, Task 4
-// Implemented delegate
 @protocol CardMatchingGameDelegate <NSObject>
 @required
+
 -(void)matchDescription: (NSMutableArray* )pickedCards didCardsMatch: (BOOL) status;
 -(void)cardDescription: (NSMutableArray *)pickedCards;
 
@@ -23,20 +22,13 @@
 @interface CardMatchingGame : NSObject
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
-
-// Assignment 2, Task 3
-// modified chooseCardAtIndex: method to include the segmentedControl index that
-// indicates which game the user want to play
 - (void)chooseCardAtIndex:(NSUInteger)cardIndex
  getSegmentedControlIndex:(NSInteger)segmentedControlIndex;
-
 - (Card *)cardAtIndex:(NSUInteger)index;
 
 @property(nonatomic, readonly) NSInteger score;
 @property (nonatomic, strong) NSNumber* scoreGame;
-
-// Assignment 2, Task 4
-// Implemented delegate
 @property(nonatomic, weak) id<CardMatchingGameDelegate> delegate;
+
 
 @end
