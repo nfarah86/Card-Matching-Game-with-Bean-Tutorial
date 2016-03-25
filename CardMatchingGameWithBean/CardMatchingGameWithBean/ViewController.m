@@ -54,8 +54,8 @@
                                                   usingDeck:[self deck]];
         // We assign ourselves as the delegate
         _game.delegate = self;
+        self.gameDescriptionLabel.text = @"New Match Game";
     }
-    
     return _game;
 }
 
@@ -69,7 +69,6 @@
     
     // Assignment 2, Task 3
     // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
-    
     NSInteger segmentIndex = [self.segmentedControl selectedSegmentIndex];
     [self.game chooseCardAtIndex:(NSUInteger)cardIndex getSegmentedControlIndex: (NSInteger) segmentIndex];
     [self updateUI];
@@ -129,29 +128,44 @@
 }
 
 
--(void)gameDescription:(NSMutableArray* ) pickedCards didCardsMatch: (BOOL) status
+// Assignment 2, Task 5
+-(void)matchDescription:(NSMutableArray *) pickedCards didCardsMatch: (BOOL) status
 {
-    
-    // NSLog(@"these are the cards matched cound %d", status);
+    NSString* descriptionText = [self _labelDescription:pickedCards];
+    NSMutableString* describeMatchText = [descriptionText mutableCopy];
     
     if (status) {
-        
-       NSMutableString* labelDescription = [[NSMutableString alloc]initWithString:@"Matched: "];
-        for (int i = 0; i < [pickedCards count]; i+= 1)
-        {
-            PlayingCard* matchingCard = pickedCards[i];
-            [labelDescription appendFormat:@"%ld%@ and ", matchingCard.rank, matchingCard.suit];
-        }
-        NSString* newLabelDescription = [NSString stringWithString:labelDescription];
-        NSRange replaceAnd= [labelDescription rangeOfString:@"and " options:NSBackwardsSearch];
-        if (replaceAnd.location != NSNotFound)
-        {
-            newLabelDescription = [newLabelDescription stringByReplacingCharactersInRange:replaceAnd withString:@""];
-        }
-        self.gameDescriptionLabel.text = newLabelDescription;
+        [describeMatchText appendFormat: @"matched"];
+        self.gameDescriptionLabel.text = describeMatchText;
     } else {
-            self.gameDescriptionLabel.text = @"Sorry, No Matches";
+        [describeMatchText appendFormat: @"don't Match"];
+        self.gameDescriptionLabel.text = describeMatchText;
     }
+}
+
+
+// Assignment 2, Task 5
+-(NSString *) _labelDescription: (NSMutableArray *) pickedCards
+{
+    NSMutableString* labelDescription = [[NSMutableString alloc]init];
+    for (int i = 0; i < [pickedCards count]; i++) {
+        PlayingCard* pickedCard = pickedCards[i];
+        [labelDescription appendFormat:@"%ld%@ and ", pickedCard.rank, pickedCard.suit];
+    }
+    NSString* newLabelDescription = [NSString stringWithString:labelDescription];
+    NSRange replaceAnd= [labelDescription rangeOfString:@"and " options:NSBackwardsSearch];
+    if (replaceAnd.location != NSNotFound) {
+        newLabelDescription = [newLabelDescription stringByReplacingCharactersInRange:replaceAnd withString:@""];
+    }
+    return newLabelDescription;
+}
+
+
+// Assignment 2, Task 5
+-(void) cardDescription: (NSMutableArray *)pickedCards
+{
+    NSString* cardDescriptionText = [self _labelDescription:pickedCards];
+    self.gameDescriptionLabel.text = cardDescriptionText;
 }
 
 @end

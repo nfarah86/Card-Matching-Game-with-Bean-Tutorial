@@ -74,10 +74,18 @@
     // 2 or 3 card game, I modified this function to differentiate between
     // each game and process the info (segmentIndex, cardIndex) with respect
     // to the specific match game.
-
     Card *card = [self cardAtIndex:cardIndex];
     [self.chosenCards addObject:card];
+    [self.delegate cardDescription:self.chosenCards];
     [self scoreGame:@"picked a card"];
+    
+    
+    // pick cards and display in one method
+    // if matched - another method (already written)
+    
+    // one function that has if statements, pending if card is being picked or matched
+    
+    // true/false for match;
     
     if (!card.matched) {
         if (card.chosen) {
@@ -148,7 +156,7 @@ static const int COST_TO_CHOOSE = 1;
 {
     // Assignment 2, Task 4
     // Implemented delegate
-    [self.delegate gameDescription: self.chosenCards didCardsMatch: resultOfCardMatch];
+    [self.delegate matchDescription: self.chosenCards didCardsMatch: resultOfCardMatch];
     
 }
 

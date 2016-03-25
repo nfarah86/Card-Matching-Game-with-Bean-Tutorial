@@ -14,7 +14,8 @@
 // Implemented delegate
 @protocol CardMatchingGameDelegate <NSObject>
 @required
--(void)gameDescription: (NSMutableArray* )pickedCards didCardsMatch: (BOOL) status;
+-(void)matchDescription: (NSMutableArray* )pickedCards didCardsMatch: (BOOL) status;
+-(void)cardDescription: (NSMutableArray *)pickedCards;
 @end
 
 @interface CardMatchingGame : NSObject
