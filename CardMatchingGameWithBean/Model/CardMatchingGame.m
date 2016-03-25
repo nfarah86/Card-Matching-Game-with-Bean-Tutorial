@@ -19,10 +19,10 @@
 @property (nonatomic, strong) NSMutableArray *chosenCards;
 @property (nonatomic) NSInteger matchScore;
 @property(strong, nonatomic) PlayingCardDeck *deck;
-@property(strong, nonatomic) NSMutableArray * unmodifiedCardsList;
 
 
 @end
+
 
 @implementation CardMatchingGame
 
@@ -95,6 +95,7 @@
                     [self matchCards:self.chosenCards];
                 } else {
                     [self unmatchCards:self.chosenCards];
+
                 }
             }
         }
