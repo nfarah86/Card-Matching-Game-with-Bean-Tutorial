@@ -88,15 +88,12 @@
 
 -(NSString*) titleForCard: (Card *) card
 {
-    // return card.isChosen ? card.contents : @"";
-    return card.chosen ? @"": card.contents;
-
+    return card.chosen ? card.contents : @"";
 }
 
 -(UIImage*) backgroundImageForCard: (Card *) card
 {
-    // return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
-    return [UIImage imageNamed:(card.chosen) ? @"pt-back-card.png" : @"plainCard"];
+    return [UIImage imageNamed:(card.chosen) ? @"plainCard" : @"pt-back-card.png"];
 }
 
 // Assignment 2, Task 2
