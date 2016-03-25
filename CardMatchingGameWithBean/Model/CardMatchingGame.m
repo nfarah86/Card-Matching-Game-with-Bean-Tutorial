@@ -20,6 +20,8 @@
 @property (nonatomic) NSInteger matchScore;
 @property(strong, nonatomic) PlayingCardDeck *deck;
 @property(strong, nonatomic) NSMutableArray * unmodifiedCardsList;
+
+
 @end
 
 @implementation CardMatchingGame
@@ -60,7 +62,6 @@
 // Assignment 2, Task 3
 // modified chooseCardAtIndex: method to include the segmentedControl index that
 // indicates which game the user want to play
-
 - (void)chooseCardAtIndex:(NSUInteger)cardIndex
  getSegmentedControlIndex:(NSInteger)segmentedControlIndex
 {
@@ -79,14 +80,6 @@
     [self.delegate cardDescription:self.chosenCards];
     [self scoreGame:@"picked a card"];
     
-    
-    // pick cards and display in one method
-    // if matched - another method (already written)
-    
-    // one function that has if statements, pending if card is being picked or matched
-    
-    // true/false for match;
-    
     if (!card.matched) {
         if (card.chosen) {
             card.chosen = NO;
@@ -103,8 +96,6 @@
                 } else {
                     [self unmatchCards:self.chosenCards];
                 }
-            
-                //[self _updateGameDescription];
             }
         }
     }
@@ -152,12 +143,11 @@ static const int COST_TO_CHOOSE = 1;
     return [self.chosenCards count] == segmentControlIndex + 2 ? [self.chosenCards count]: 0;
 }
 
+// Assignment 2, Task 4
+// Implemented delegate
 -(void) _didCardsMatch: (BOOL) resultOfCardMatch
 {
-    // Assignment 2, Task 4
-    // Implemented delegate
     [self.delegate matchDescription: self.chosenCards didCardsMatch: resultOfCardMatch];
-    
 }
 
 @end

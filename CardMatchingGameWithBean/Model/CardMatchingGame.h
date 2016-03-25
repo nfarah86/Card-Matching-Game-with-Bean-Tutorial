@@ -16,6 +16,8 @@
 @required
 -(void)matchDescription: (NSMutableArray* )pickedCards didCardsMatch: (BOOL) status;
 -(void)cardDescription: (NSMutableArray *)pickedCards;
+
+
 @end
 
 @interface CardMatchingGame : NSObject
@@ -32,6 +34,9 @@
 
 @property(nonatomic, readonly) NSInteger score;
 @property (nonatomic, strong) NSNumber* scoreGame;
+
+// Assignment 2, Task 4
+// Implemented delegate
 @property(nonatomic, weak) id<CardMatchingGameDelegate> delegate;
 
 @end

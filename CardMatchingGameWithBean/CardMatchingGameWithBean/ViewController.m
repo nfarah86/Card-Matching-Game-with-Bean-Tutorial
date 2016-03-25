@@ -14,8 +14,6 @@
 
 @interface ViewController () <CardMatchingGameDelegate>
 
-
-
 @property(strong, nonatomic) PlayingCardDeck *deck;
 @property(nonatomic) CardMatchingGame* game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -28,6 +26,7 @@
 // Dragged UISegmentedIndex from UI to ViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
+
 @end
 
 @implementation ViewController
@@ -39,7 +38,6 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-
 -(PlayingCardDeck *)deck
 {
     // Every time someone deals a deck or chooses a game, we will
@@ -47,18 +45,19 @@
     return [[PlayingCardDeck alloc] init];
 }
 
-
 -(CardMatchingGame *) game{
     if (! _game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
+        // Assignment 2, Task 4
         // We assign ourselves as the delegate
         _game.delegate = self;
+        
+        // Assignment 2, Task 5
         self.gameDescriptionLabel.text = @"New Match Game";
     }
     return _game;
 }
-
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
@@ -75,7 +74,6 @@
 
 }
 
-
 -(void)updateUI
 {
     for (UIButton* cardButton in self.cardButtons){
@@ -88,7 +86,6 @@
     }
 }
 
-
 -(NSString*) titleForCard: (Card *) card
 {
     // return card.isChosen ? card.contents : @"";
@@ -96,13 +93,11 @@
 
 }
 
-
 -(UIImage*) backgroundImageForCard: (Card *) card
 {
     // return [UIImage imageNamed:(card.isChosen) ? @"plainCard" : @"pt-back-card.png"];
     return [UIImage imageNamed:(card.chosen) ? @"pt-back-card.png" : @"plainCard"];
 }
-
 
 // Assignment 2, Task 2
 - (IBAction)clickOnDeal:(UIButton *)sender
@@ -115,7 +110,6 @@
     }
 }
 
-
 // Assignment 2, Task 3
 // This method gets the segmentIndex of what game is played
 - (IBAction)pickMatchGame:(UISegmentedControl *)sender
@@ -126,7 +120,6 @@
         [self updateUI];
     }
 }
-
 
 // Assignment 2, Task 5
 -(void)matchDescription:(NSMutableArray *) pickedCards didCardsMatch: (BOOL) status
@@ -143,7 +136,6 @@
     }
 }
 
-
 // Assignment 2, Task 5
 -(NSString *) _labelDescription: (NSMutableArray *) pickedCards
 {
@@ -159,7 +151,6 @@
     }
     return newLabelDescription;
 }
-
 
 // Assignment 2, Task 5
 -(void) cardDescription: (NSMutableArray *)pickedCards
