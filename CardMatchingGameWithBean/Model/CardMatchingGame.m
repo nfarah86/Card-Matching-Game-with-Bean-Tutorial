@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *chosenCards;
 @property (nonatomic) NSInteger matchScore;
 @property(strong, nonatomic) PlayingCardDeck *deck;
+@property(strong, nonatomic) NSMutableArray * unmodifiedCardsList;
 @end
 
 @implementation CardMatchingGame
@@ -94,6 +95,8 @@
                 } else {
                     [self unmatchCards:self.chosenCards];
                 }
+            
+                //[self _updateGameDescription];
             }
         }
     }
@@ -120,6 +123,7 @@ static const int COST_TO_CHOOSE = 1;
         Card* cardToBeMatched = userCards[i];
         [self scoreGame: @"cards matched"];
         cardToBeMatched.matched = YES;
+        [self _didCardsMatch: true];
     }
     self.chosenCards = [NSMutableArray array];
 }
@@ -129,6 +133,7 @@ static const int COST_TO_CHOOSE = 1;
     for (int i = 0; (i < [usersCards count]-1); i++) {
         Card* cardToBeUnMatched = usersCards[i];
         [self scoreGame:@"cards don't match"];
+        [self _didCardsMatch: false];
         [self.chosenCards removeObject:cardToBeUnMatched];
         cardToBeUnMatched.chosen = NO;
     }
@@ -137,6 +142,14 @@ static const int COST_TO_CHOOSE = 1;
 - (NSInteger)_differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
 {
     return [self.chosenCards count] == segmentControlIndex + 2 ? [self.chosenCards count]: 0;
+}
+
+-(void) _didCardsMatch: (BOOL) resultOfCardMatch
+{
+    // Assignment 2, Task 4
+    // Implemented delegate
+    [self.delegate gameDescription: self.chosenCards didCardsMatch: resultOfCardMatch];
+    
 }
 
 @end

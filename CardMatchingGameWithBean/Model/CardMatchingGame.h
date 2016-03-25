@@ -10,6 +10,13 @@
 #import "Deck.h"
 #import "Card.h"
 
+// Assignment 2, Task 4
+// Implemented delegate
+@protocol CardMatchingGameDelegate <NSObject>
+@required
+-(void)gameDescription: (NSMutableArray* )pickedCards didCardsMatch: (BOOL) status;
+@end
+
 @interface CardMatchingGame : NSObject
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
@@ -24,6 +31,6 @@
 
 @property(nonatomic, readonly) NSInteger score;
 @property (nonatomic, strong) NSNumber* scoreGame;
-
+@property(nonatomic, weak) id<CardMatchingGameDelegate> delegate;
 
 @end

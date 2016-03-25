@@ -12,7 +12,7 @@
 #import "Card.h"
 #import "CardMatchingGame.h"
 
-@interface ViewController ()
+@interface ViewController () <CardMatchingGameDelegate>
 
 
 
@@ -20,9 +20,11 @@
 @property(nonatomic) CardMatchingGame* game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gameDescriptionLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
 
+// Assignment 2, Task 3
 // Dragged UISegmentedIndex from UI to ViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
@@ -38,7 +40,6 @@
 }
 
 
-
 -(PlayingCardDeck *)deck
 {
     // Every time someone deals a deck or chooses a game, we will
@@ -51,6 +52,8 @@
     if (! _game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[self deck]];
+        // We assign ourselves as the delegate
+        _game.delegate = self;
     }
     
     return _game;
@@ -61,6 +64,8 @@
 {
 
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+    // Assignment 2, Task 4
+    [self.segmentedControl setEnabled: NO];
     
     // Assignment 2, Task 3
     // modified chooseCardAtIndex: method to include the segmentedControl index that indicates which game the user want to play
@@ -100,27 +105,53 @@
 }
 
 
+// Assignment 2, Task 2
 - (IBAction)clickOnDeal:(UIButton *)sender
 {
     if(sender) {
-        //when the deal button is clicked
         self.game = nil;
+        // Assignment 2, Task 4
+        [self.segmentedControl setEnabled: YES];
         [self updateUI];
     }
 }
 
 
 // Assignment 2, Task 3
-// This method gets the segmentIndex that shows what game the
-// user wants to play
+// This method gets the segmentIndex of what game is played
 - (IBAction)pickMatchGame:(UISegmentedControl *)sender
 {
     if (sender) {
-        // restart the game
         self.game = nil;
+        [self.segmentedControl setEnabled: NO];
         [self updateUI];
     }
 }
 
+
+-(void)gameDescription:(NSMutableArray* ) pickedCards didCardsMatch: (BOOL) status
+{
+    
+    // NSLog(@"these are the cards matched cound %d", status);
+    
+    if (status) {
+        
+       NSMutableString* labelDescription = [[NSMutableString alloc]initWithString:@"Matched: "];
+        for (int i = 0; i < [pickedCards count]; i+= 1)
+        {
+            PlayingCard* matchingCard = pickedCards[i];
+            [labelDescription appendFormat:@"%ld%@ and ", matchingCard.rank, matchingCard.suit];
+        }
+        NSString* newLabelDescription = [NSString stringWithString:labelDescription];
+        NSRange replaceAnd= [labelDescription rangeOfString:@"and " options:NSBackwardsSearch];
+        if (replaceAnd.location != NSNotFound)
+        {
+            newLabelDescription = [newLabelDescription stringByReplacingCharactersInRange:replaceAnd withString:@""];
+        }
+        self.gameDescriptionLabel.text = newLabelDescription;
+    } else {
+            self.gameDescriptionLabel.text = @"Sorry, No Matches";
+    }
+}
 
 @end
