@@ -171,6 +171,15 @@
                                     <action selector="clickOnDeal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y22-ZQ-TOM"/>
                                 </connections>
                             </button>
+<<<<<<< 300b91fbdb28172750fdc8c5c710c6bd0ff2eb73
+=======
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
+                                <rect key="frame" x="27" y="508" width="312" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+>>>>>>> added UISegmentedControl and renamed index"
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-66-io6">
                                 <rect key="frame" x="27" y="73" width="312" height="29"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,6 +188,7 @@
                                     <segment title="3-Card Match Game"/>
                                 </segments>
                                 <color key="tintColor" red="0.23956757482739799" green="0.48220797035787621" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+<<<<<<< 300b91fbdb28172750fdc8c5c710c6bd0ff2eb73
                                 <connections>
                                     <action selector="pickMatchGame:" destination="BYZ-38-t0r" eventType="valueChanged" id="rT2-YL-3N9"/>
                                 </connections>
@@ -195,6 +205,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+=======
+                            </segmentedControl>
+>>>>>>> added UISegmentedControl and renamed index"
                         </subviews>
                         <color key="backgroundColor" red="0.1647058874" green="0.59607845540000004" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
                     </view>
