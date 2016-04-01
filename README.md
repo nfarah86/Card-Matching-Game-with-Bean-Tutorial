@@ -13,6 +13,7 @@ I used some classes not mentioned in the lectures, which I will go over during t
 |[v.02](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.02)| Code after completion of assignment 1
 |[v.03](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.03)| Code after lecture 3 | 
 |[v.04](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.04)| Code after Assginment 2, Task 2 | 
+|[v.05](https://github.com/nfarah86/Card-Matching-Game-with-Bean-Tutorial/releases/tag/v.05)| Code after Assginment 2, Task 3 and Task 4 |
 
 
 # License
