@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,24 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-zP-tTZ">
-                                <rect key="frame" x="274" y="562" width="65" height="30"/>
-                                <state key="normal" title="Deal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickOnDeal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y22-ZQ-TOM"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
-                                <rect key="frame" x="27" y="508" width="312" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
+                                <rect key="frame" x="59" y="548" width="96" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-66-io6">
-                                <rect key="frame" x="27" y="73" width="312" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-66-io6">
+                                <rect key="frame" x="59" y="20" width="455" height="29"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="2-Card Match Game"/>
@@ -46,34 +37,34 @@
                                     <action selector="pickMatchGame:" destination="BYZ-38-t0r" eventType="valueChanged" id="rT2-YL-3N9"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Let's Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ4-eQ-NFC">
-                                <rect key="frame" x="27" y="523.5" width="408" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Let's Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ4-eQ-NFC">
+                                <rect key="frame" x="59" y="454" width="455" height="47.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="drW-xu-AkI">
-                                <rect key="frame" x="27" y="157" width="318" height="343"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="drW-xu-AkI">
+                                <rect key="frame" x="59" y="70" width="455" height="376"/>
                                 <color key="backgroundColor" red="0.45098042488098145" green="0.84313732385635376" blue="0.054901964962482452" alpha="1" colorSpace="deviceRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RlA-Fk-qe2">
-                                    <size key="itemSize" width="90" height="117"/>
+                                    <size key="itemSize" width="67" height="93"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="WwP-JM-imm" userLabel="cardCell" customClass="ContentCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="90" height="117"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="93"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="117"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="67" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pt-back-card.png" translatesAutoresizingMaskIntoConstraints="NO" id="15N-FN-gfa" userLabel="Card background">
-                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="117"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="67" height="93"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqb-az-4gZ" userLabel="Card Description Label">
-                                                    <rect key="frame" x="0.0" y="44" width="90" height="28"/>
+                                                    <rect key="frame" x="0.0" y="33" width="67" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -89,8 +80,38 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-zP-tTZ">
+                                <rect key="frame" x="475" y="552" width="45" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Deal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickOnDeal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y22-ZQ-TOM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058874" green="0.59607845540000004" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="1" id="2cS-kD-ESA"/>
+                            <constraint firstItem="XgZ-zP-tTZ" firstAttribute="top" secondItem="NZ4-eQ-NFC" secondAttribute="bottom" constant="50.5" id="2zB-Kf-jw3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ExH-9G-URD" secondAttribute="bottom" constant="15" id="4k6-na-Ls6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XgZ-zP-tTZ" secondAttribute="bottom" constant="18" id="AQf-GN-rbi"/>
+                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="top" secondItem="drW-xu-AkI" secondAttribute="bottom" constant="8" id="D1Q-8Q-TYJ"/>
+                            <constraint firstItem="ExH-9G-URD" firstAttribute="top" secondItem="NZ4-eQ-NFC" secondAttribute="bottom" constant="46.5" id="Gmf-4R-fHE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uqf-66-io6" secondAttribute="trailing" constant="66" id="LX9-aj-Jqj"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="QPJ-yX-MVi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="drW-xu-AkI" secondAttribute="trailing" constant="66" id="T5V-nT-Zgh"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="top" secondItem="Uqf-66-io6" secondAttribute="bottom" constant="22" id="fhH-rk-KPu"/>
+                            <constraint firstItem="ExH-9G-URD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="hfY-Jg-tmv"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="uGy-Z2-tE7"/>
+                            <constraint firstItem="Uqf-66-io6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="uUh-mO-Ebx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NZ4-eQ-NFC" secondAttribute="trailing" constant="66" id="vTv-RZ-XWU"/>
+                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="vmi-Kg-LkA"/>
+                            <constraint firstItem="Uqf-66-io6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="x9x-Ga-D7y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XgZ-zP-tTZ" secondAttribute="trailing" constant="60" id="yuP-kR-NF6"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="drW-xu-AkI" id="gDm-Az-rHj"/>
