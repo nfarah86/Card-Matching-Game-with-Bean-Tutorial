@@ -20,6 +20,7 @@
 		DD3FE7321C31FD3800955488 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3FE7311C31FD3800955488 /* PlayingCard.m */; };
 		DD3FE7351C320AA600955488 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3FE7341C320AA600955488 /* PlayingCardDeck.m */; };
 		DD4DD6D81C348CCD009CA5C3 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4DD6D71C348CCD009CA5C3 /* CardMatchingGame.m */; };
+		DD93BBCD1CAF57DC00961135 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD93BBCC1CAF57DC00961135 /* ContentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		DD3FE7341C320AA600955488 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		DD4DD6D61C348CCD009CA5C3 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		DD4DD6D71C348CCD009CA5C3 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
+		DD93BBCB1CAF57DC00961135 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
+		DD93BBCC1CAF57DC00961135 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				DD1327351C2A5CA0002A799B /* ViewController.h */,
 				DD1327361C2A5CA0002A799B /* ViewController.m */,
 				DD1327381C2A5CA0002A799B /* Main.storyboard */,
+				DD93BBCB1CAF57DC00961135 /* ContentCell.h */,
+				DD93BBCC1CAF57DC00961135 /* ContentCell.m */,
 				DD13273B1C2A5CA0002A799B /* Assets.xcassets */,
 				DD13273D1C2A5CA0002A799B /* LaunchScreen.storyboard */,
 				DD1327401C2A5CA0002A799B /* Info.plist */,
@@ -311,6 +316,7 @@
 				DD3FE7351C320AA600955488 /* PlayingCardDeck.m in Sources */,
 				DD1327311C2A5CA0002A799B /* main.m in Sources */,
 				DD1327651C2A5D82002A799B /* Card.m in Sources */,
+				DD93BBCD1CAF57DC00961135 /* ContentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
