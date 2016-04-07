@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong, nonatomic) NSMutableArray *arrayOfCards;
 

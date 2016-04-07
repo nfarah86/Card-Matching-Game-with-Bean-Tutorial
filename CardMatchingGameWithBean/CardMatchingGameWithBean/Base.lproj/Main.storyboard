@@ -19,21 +19,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
-                                <rect key="frame" x="59" y="548" width="96" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:  0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-9G-URD">
+                                <rect key="frame" x="20" y="543" width="96" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="tkA-nZ-b3u"/>
+                                    <constraint firstAttribute="height" constant="37" id="vUE-U4-J99"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Let's Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ4-eQ-NFC">
-                                <rect key="frame" x="65" y="496" width="455" height="47.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ4-eQ-NFC">
+                                <rect key="frame" x="20" y="462" width="560" height="47.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47.5" id="bKA-v1-f5X"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="drW-xu-AkI">
-                                <rect key="frame" x="59" y="163" width="455" height="325"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="drW-xu-AkI">
+                                <rect key="frame" x="20" y="137" width="560" height="325"/>
                                 <color key="backgroundColor" red="0.45098042488098145" green="0.84313732385635376" blue="0.054901964962482452" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="rbj-GU-1GL"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RlA-Fk-qe2">
                                     <size key="itemSize" width="67" height="93"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -61,15 +71,18 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="backgroundView" destination="Uqf-66-io6" id="paq-Tk-Rsj"/>
                                             <outlet property="cardDescriptionLabel" destination="Rqb-az-4gZ" id="xTy-jV-xCw"/>
                                             <outlet property="imageView" destination="15N-FN-gfa" id="OLq-Oe-HWe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-zP-tTZ">
-                                <rect key="frame" x="475" y="552" width="45" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-zP-tTZ">
+                                <rect key="frame" x="535" y="550" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="JsD-eW-fme"/>
+                                    <constraint firstAttribute="height" constant="30" id="qxq-Pj-2EV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Deal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,36 +92,33 @@
                                     <action selector="clickOnDeal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y22-ZQ-TOM"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-66-io6">
-                                <rect key="frame" x="59" y="117" width="455" height="29"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="455" id="d33-Zf-fpR"/>
-                                </constraints>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IRr-Iu-ueV">
+                                <rect key="frame" x="20" y="57" width="560" height="29"/>
+                                <color key="backgroundColor" red="0.99466765869999996" green="0.99466765869999996" blue="0.99466765869999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
-                                    <segment title="2-Card Match Game"/>
-                                    <segment title="3-Card Match Game"/>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
                                 </segments>
-                                <color key="tintColor" red="0.23956757482739799" green="0.48220797035787621" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="pickMatchGame:" destination="BYZ-38-t0r" eventType="valueChanged" id="rT2-YL-3N9"/>
-                                </connections>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058874" green="0.59607845540000004" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="drW-xu-AkI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="1" id="2cS-kD-ESA"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ExH-9G-URD" secondAttribute="bottom" constant="15" id="4k6-na-Ls6"/>
-                            <constraint firstItem="XgZ-zP-tTZ" firstAttribute="top" secondItem="NZ4-eQ-NFC" secondAttribute="bottom" constant="8.5" id="6hO-M7-6qy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NZ4-eQ-NFC" secondAttribute="trailing" constant="60" id="9bx-23-kWh"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XgZ-zP-tTZ" secondAttribute="bottom" constant="18" id="AQf-GN-rbi"/>
-                            <constraint firstItem="drW-xu-AkI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="EQS-54-YTS"/>
-                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="45" id="LtR-sX-Q0L"/>
-                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="top" secondItem="drW-xu-AkI" secondAttribute="bottom" constant="8" id="Vve-12-S4H"/>
-                            <constraint firstItem="ExH-9G-URD" firstAttribute="top" secondItem="NZ4-eQ-NFC" secondAttribute="bottom" constant="4.5" id="gme-7G-Jca"/>
-                            <constraint firstItem="ExH-9G-URD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="39" id="hfY-Jg-tmv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="drW-xu-AkI" secondAttribute="trailing" constant="66" id="kqR-lT-s3m"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XgZ-zP-tTZ" secondAttribute="trailing" constant="60" id="yuP-kR-NF6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="drW-xu-AkI" secondAttribute="trailing" id="7Bi-XF-pTL"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A18-kz-Hkc"/>
+                            <constraint firstItem="IRr-Iu-ueV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="DFr-JS-BXo"/>
+                            <constraint firstItem="ExH-9G-URD" firstAttribute="top" secondItem="NZ4-eQ-NFC" secondAttribute="bottom" constant="33.5" id="MGS-ey-Z52"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ExH-9G-URD" secondAttribute="bottom" constant="20" id="O9f-jU-m2C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XgZ-zP-tTZ" secondAttribute="trailing" id="Ppr-VY-51c"/>
+                            <constraint firstItem="ExH-9G-URD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TIx-04-pSU"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="amu-oq-Jew"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NZ4-eQ-NFC" secondAttribute="trailing" id="gqh-0s-lu6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XgZ-zP-tTZ" secondAttribute="bottom" constant="20" id="hly-Z1-JDN"/>
+                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="top" secondItem="drW-xu-AkI" secondAttribute="bottom" id="mG3-KZ-Ecj"/>
+                            <constraint firstItem="NZ4-eQ-NFC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xEB-Kq-aGX"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="top" secondItem="IRr-Iu-ueV" secondAttribute="bottom" constant="52" id="xqz-sl-5xk"/>
+                            <constraint firstItem="IRr-Iu-ueV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zIs-HT-vWw"/>
+                            <constraint firstItem="drW-xu-AkI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zXM-VU-9eb"/>
                         </constraints>
                     </view>
                     <connections>
@@ -116,7 +126,7 @@
                         <outlet property="dealButton" destination="XgZ-zP-tTZ" id="dyO-TL-wyu"/>
                         <outlet property="gameDescriptionLabel" destination="NZ4-eQ-NFC" id="yjJ-Ir-V8M"/>
                         <outlet property="scoreLabel" destination="ExH-9G-URD" id="oYz-EF-sz5"/>
-                        <outlet property="segmentedControl" destination="Uqf-66-io6" id="nhW-15-jNw"/>
+                        <outlet property="segmentedControl" destination="IRr-Iu-ueV" id="YW6-UT-E3w"/>
                     </connections>
                 </viewController>
             </objects>
