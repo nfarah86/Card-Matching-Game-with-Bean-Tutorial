@@ -96,8 +96,8 @@
                                 <rect key="frame" x="20" y="57" width="560" height="29"/>
                                 <color key="backgroundColor" red="0.99466765869999996" green="0.99466765869999996" blue="0.99466765869999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="2-Card Game Match"/>
+                                    <segment title="3-Card Game Match "/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>

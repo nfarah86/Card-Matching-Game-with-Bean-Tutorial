@@ -62,7 +62,6 @@
         PlayingCard* newCardAtIndex = (PlayingCard *)[self.game cardAtIndex:i];
         [self.arrayOfCards addObject:newCardAtIndex];
     }
-    NSLog(@" %ld this is count", [self.arrayOfCards count]);
     [self.collectionView reloadData];
 }
 
@@ -80,7 +79,9 @@
 {
     if(sender) {
         self.game = nil;
+        [self game];
         [self.segmentedControl setEnabled: YES];
+        
     }
 }
 
@@ -97,11 +98,16 @@
     NSString* descriptionText = [self _labelDescription:pickedCards];
     NSMutableString* describeMatchText = [descriptionText mutableCopy];
     
-    if (status) {
-        [describeMatchText appendFormat: @"matched"];
+    if ([pickedCards count] == 0) {
+        [describeMatchText appendFormat: @"Please pick a card"];
+        self.gameDescriptionLabel.text = describeMatchText;
+    } else if ([pickedCards count] >= 1 && !(status)) {
+        self.gameDescriptionLabel.text = descriptionText;
+    } else if (status) {
+        [describeMatchText appendFormat: @"match"];
         self.gameDescriptionLabel.text = describeMatchText;
     } else {
-        [describeMatchText appendFormat: @"don't Match"];
+        [describeMatchText appendFormat: @"don't match"];
         self.gameDescriptionLabel.text = describeMatchText;
     }
 }
@@ -142,12 +148,17 @@
     }
     
     PlayingCard *card = self.arrayOfCards[indexPath.row];
-    NSLog(@"%@ this is the picked card", card);
     NSString* cardTitle = [self titleForCard:card];
     cell.cardDescriptionLabel.text = cardTitle;
     cell.imageView.image = [self backgroundImageForCard:card];
+    [cell setSelected:YES];
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"deselecting item");
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

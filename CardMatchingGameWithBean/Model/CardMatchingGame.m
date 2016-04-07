@@ -58,16 +58,14 @@
  getSegmentedControlIndex:(NSInteger)segmentedControlIndex
 {
     Card *card = [self cardAtIndex:cardIndex];
-    [self.chosenCards addObject:card];
-    [self.delegate cardDescription:self.chosenCards];
     [self scoreGame:@"picked a card"];
-    
     if (!card.matched) {
         if (card.chosen) {
-            card.chosen = NO;
-            [self.chosenCards removeObject:card];
+            [self unmatchCard:self.chosenCards];
         } else {
             card.chosen = YES;
+            [self.chosenCards addObject:card];
+            [self.delegate cardDescription:self.chosenCards];
             NSInteger cardsInArray =
                 [self _differentiateTwoAndThreeCardGames:
                           segmentedControlIndex];
@@ -105,9 +103,11 @@ static const int COST_TO_CHOOSE = 1;
         Card* cardToBeMatched = userCards[i];
         [self scoreGame: @"cards matched"];
         cardToBeMatched.matched = YES;
-        [self _didCardsMatch: true];
     }
+    
+    [self _didCardsMatch: true];
     self.chosenCards = [NSMutableArray array];
+
 }
 
 -(void) unmatchCards: (NSMutableArray *) usersCards
@@ -115,10 +115,20 @@ static const int COST_TO_CHOOSE = 1;
     for (int i = 0; (i < [usersCards count]-1); i++) {
         Card* cardToBeUnMatched = usersCards[i];
         [self scoreGame:@"cards don't match"];
-        [self _didCardsMatch: false];
-        [self.chosenCards removeObject:cardToBeUnMatched];
         cardToBeUnMatched.chosen = NO;
+        [self.chosenCards removeObject:cardToBeUnMatched];
+        [self _didCardsMatch: false];
+
     }
+}
+
+-(void) unmatchCard: (NSMutableArray *) usersCards
+{
+    Card* cardToUnMatch = usersCards[0];
+    [self scoreGame:@"picked a card"];
+    cardToUnMatch.chosen = NO;
+    [self.chosenCards removeObject:cardToUnMatch];
+    [self _didCardsMatch: false];
 }
 
 - (NSInteger)_differentiateTwoAndThreeCardGames:(NSInteger)segmentControlIndex
